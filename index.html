@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>maulana yasyfa'u al azhiim yudho leksono</title>
+    <meta name="description" content="Website profil pribadi dan portfolio.">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* ================= DESIGN SYSTEM ================= */
+        
+         :root {
+            --bg-main: #06080f;
+            --glass: rgba(255, 255, 255, 0.07);
+            --border-glass: rgba(255, 255, 255, 0.15);
+            --text-main: #e6e6eb;
+            --text-soft: #a8acc4;
+            --neon-cyan: #00f6ff;
+            --neon-purple: #8a6bff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #0c1125, #05070e);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        body.page-loaded {
+            opacity: 1;
+        }
+        /* ================= CURSOR ================= */
+        
+        .cursor {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-cyan);
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 18px var(--neon-cyan);
+        }
+        /* ================= NAVBAR ================= */
+        
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88%;
+            padding: 14px 36px;
+            backdrop-filter: blur(18px);
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .logo a {
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 26px;
+            list-style: none;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--neon-purple);
+        }
+        /* ================= SECTION BASE ================= */
+        
+        section {
+            min-height: 100vh;
+            padding: 140px 10%;
+            display: flex;
+            align-items: center;
+        }
+        /* ================= HOME ================= */
+        
+        #home {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .profile {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 36px;
+        }
+        
+        .profile::before {
+            content: "";
+            position: absolute;
+            inset: -14px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-cyan);
+            animation: spin 14s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .profile img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        #home h1 {
+            font-size: clamp(26px, 4vw, 38px);
+            margin-bottom: 12px;
+        }
+        
+        #home p {
+            color: var(--text-soft);
+            margin-bottom: 36px;
+        }
+        
+        .btn {
+            padding: 14px 36px;
+            border-radius: 40px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        /* ================= ABOUT ================= */
+        
+        .about-head {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 70px;
+        }
+        
+        #about h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        #about p {
+            color: var(--text-soft);
+        }
+        
+        .story-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+        
+        .story-link:hover {
+            color: var(--neon-purple);
+        }
+        
+        .badges {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+        
+        .badge {
+            padding: 14px;
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            font-size: 14px;
+        }
+        /* ================= SKILLS ================= */
+        
+        #skills {
+            flex-direction: column;
+            gap: 48px;
+        }
+        
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .track {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: scroll 14s linear infinite;
+        }
+        
+        .track span {
+            font-size: clamp(20px, 3vw, 34px);
+            color: var(--text-soft);
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        
+        .track span:hover {
+            color: var(--neon-purple);
+        }
+        
+        .marquee:hover .track {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+        /* ================= PROJECTS ================= */
+        
+        .laboratory {
+            padding: 120px 10%;
+            flex-direction: column;
+        }
+        
+        .lab-box {
+            width: 100%;
+            padding: 60px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(0, 255, 255, 0.25);
+            backdrop-filter: blur(18px);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        
+        .project-grid {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 18px;
+            /* 25 */
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .project-tags span {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            background: rgba(0, 255, 255, 0.15);
+            color: cyan;
+        }
+        
+        .project-link {
+            color: cyan;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .project-link:hover {
+            color: violet;
+        }
+        /* ================= CONTACT ================= */
+        
+        #contact {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .socials {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .socials a {
+            padding: 18px;
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .socials a:hover {
+            transform: translateY(-4px);
+            border-color: var(--neon-purple);
+        }
+        
+        footer {
+            margin-top: 60px;
+            font-size: 14px;
+            color: var(--text-soft);
+        }
+        
+        @media(max-width: 900px) {
+            .about-head {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor"></div>
+
+    <nav>
+        <div class="logo"><a href="#home">MY.</a></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="profile">
+            <img src="https://i.imgur.com/2AQBwac.jpeg" alt="Profile">
+        </div>
+        <h1>MAULANA YASYFA'U AL AZHIIM YUDHO LEKSONO</h1>
+        <p>Building the Future — Web3 & Quantum Enthusiast</p>
+        <a href="#about" class="btn">Explore My Journey</a>
+    </section>
+
+    <section id="about">
+        <div class="about-head">
+            <div>
+                <h2>Identity & Philosophy</h2>
+                <a href="story.html" class="story-link">Go to Storytelling →</a>
+            </div>
+            <div>
+                <p>
+                    Lulusan sma dengan antusiasme tinggi di bidang Web3, Quantum Computing dan hal baru.<br><br> Filosofi saya berakar pada pepatah Mandarin:
+                    <strong>“活到老，学到老”</strong>.
+                </p>
+                <div class="badges">
+                    <div class="badge">Indonesian — Native</div>
+                    <div class="badge">English — Listening</div>
+                    <div class="badge">Mandarin — Reading</div>
+                    <div class="badge">Russian — Cyrillic Writing</div>
+                    <div class="badge">Turkish — Basic</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="marquee">
+            <div class="track">
+                <span>Solidity • Ethereum • Rust • Web3 • Qiskit • Quantum • React • Node • TypeScript •</span>
+                <span>Solidity • Ethereum • Rust • Web3 • Qiskit • Quantum • React • Node • TypeScript •</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="laboratory">
+
+        <h2 class="section-title">The Laboratory</h2>
+
+        <div class="lab-box">
+            <div class="project-grid">
+
+                <!-- PROJECT 1 -->
+                <div class="project-card">
+                    <img src="https://i.imgur.com/6WwmCMh.png" class="project-image">
+                    <div class="project-content">
+                        <h3>KKRN ERC-20 Smart Contract</h3>
+
+                        <div class="project-tags">
+                            <span>Solidity</span>
+                            <span>Ethereum</span>
+                            <span>Web3</span>
+                        </div>
+
+                        <p class="project-description">
+                            Eksplorasi ERC-20 dan keamanan smart contract.
+                        </p>
+
+                        <a href="https://github.com/ByteBreakerGhost-69/KKRN-ERC-20" target="_blank" class="project-link">
+            Go to Repository →
+          </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Let’s Collaborate.</h2>
+        <div class="socials">
+            <a href="https://id.linkedin.com/in/maulana-yasyfa-u-al-azhiim-yudho-leksono-95649a376">LinkedIn</a>
+            <a href="https://www.tiktok.com/@bytebreakerghost6">TikTok</a>
+            <a href="https://www.instagram.com/dekode.detik/">Instagram</a>
+            <a href="https://github.com/ByteBreakerGhost-69">GitHub</a>
+            <a href="https://x.com/u53864">X</a>
+        </div>
+        <footer>© 2026 Maulana Yasyfa'u Al Azhiim Yudho Leksono.</footer>
+    </section>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("page-loaded");
+        });
+
+        const cursor = document.querySelector(".cursor");
+        document.addEventListener("mousemove", e => {
+            cursor.style.left = e.clientX + "px";
+            cursor.style.top = e.clientY + "px";
+        });
+    </script>
+
+</body>
+
+</html>
