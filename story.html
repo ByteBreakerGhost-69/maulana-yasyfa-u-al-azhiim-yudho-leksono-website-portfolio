@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Story | Maulana Y. A. A. Y. Leksono</title>
+    <style>
+         :root {
+            --bg: #06080f;
+            --text: #e6e6eb;
+            --text-soft: #a8acc4;
+            --neon-cyan: #00f6ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #0c1125, #05070e);
+            color: var(--text);
+            line-height: 1.9;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            overflow-x: hidden;
+        }
+        
+        body.page-loaded {
+            opacity: 1;
+        }
+        /* ===== NAV ===== */
+        
+        nav {
+            padding: 24px 10%;
+        }
+        
+        nav a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        /* ===== STORY ===== */
+        
+        .story {
+            max-width: 860px;
+            margin: auto;
+            padding: 80px 10% 160px;
+        }
+        
+        .story h1 {
+            font-size: 38px;
+            margin-bottom: 30px;
+        }
+        
+        .story p {
+            color: var(--text-soft);
+            margin-bottom: 26px;
+            font-size: 17px;
+        }
+        /* ===== BACKGROUND PHOTOS (MERGED) ===== */
+        
+        .background-photos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding-bottom: 180px;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: 1.2s ease;
+        }
+        
+        .background-photos.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .background-photos img {
+            width: 220px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 16px;
+            opacity: 0.35;
+            filter: grayscale(100%);
+            transition: 0.6s ease;
+        }
+        
+        .background-photos img:hover {
+            opacity: 0.9;
+            filter: grayscale(0%);
+            transform: translateY(-8px);
+        }
+        
+        @media (max-width: 700px) {
+            .background-photos {
+                flex-direction: column;
+                align-items: center;
+                gap: 28px;
+            }
+        }
+    </style>
+</head>
+
+<script>
+    /* Fade in saat halaman load */
+    window.addEventListener("load", () => {
+        document.body.classList.add("page-loaded");
+    });
+
+    /* Fade out saat klik link */
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", e => {
+            const href = link.getAttribute("href");
+
+            if (href && !href.startsWith("#") && !href.startsWith("http")) {
+                e.preventDefault();
+                document.body.classList.remove("page-loaded");
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            }
+        });
+    });
+</script>
+
+<body>
+
+    <nav>
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <section class="story">
+        <h1>My Story</h1>
+
+        <p>Saya adalah lulusan SMA dengan antusiasme tinggi di bidang Web3 dan Quantum Computing—dua ranah yang menuntut keberanian untuk belajar di wilayah yang belum memiliki peta yang jelas. Saya percaya bahwa batas kemampuan seseorang tidak ditentukan
+            oleh latar belakang formalnya, melainkan oleh sejauh mana rasa ingin tahunya dibiarkan hidup"<br>
+            <br>Prinsip hidup yang saya pegang adalah filosofi Mandarin: “活到老，学到老” (Huó dào lǎo, xué dào lǎo)—belajar seumur hidup. Bagi saya, ini bukan sekadar kata-kata inspiratif, melainkan strategi bertahan di era teknologi yang berubah lebih cepat
+            daripada kurikulum formal mampu mengikutinya.<br>
+            <br>Perjalanan belajar saya tumbuh di lingkungan yang sederhana. Di SMA Islam Plus Hidayatut Thullab, pembelajaran teknologi modern seperti Web3, kriptografi, atau Quantum Computing tidak tersedia; bahkan bahasa asing yang diajarkan secara
+            formal hanya bahasa Inggris. Namun keterbatasan ini justru menjadi titik awal saya untuk belajar secara mandiri. Saya terbiasa mencari sumber sendiri, membedah konsep dari nol, dan memahami teknologi langsung dari ekosistem globalnya—tanpa
+            menunggu arahan.<br><br> Dalam proses ini, saya menemukan bahwa belajar lintas disiplin adalah kunci. Selain teknologi, saya secara otodidak mempelajari bahasa Mandarin dan Turki di tingkat dasar, serta menguasai pembacaan alfabet Rusia. Bagi
+            saya, bahasa bukan hanya alat komunikasi, tetapi latihan berpikir—membentuk pola logika, ketelitian, dan adaptabilitas yang sangat relevan dalam memahami struktur data dan sistem kompleks.<br><br> Saya memiliki kepribadian introvert. Saya
+            menemukan energi dalam kesunyian, refleksi, dan pemikiran mendalam. Sifat ini memungkinkan saya untuk fokus dalam jangka panjang, tenggelam dalam konsep abstrak, dan membangun pemahaman secara sistematis—sebuah karakter yang selaras dengan.
+            dunia riset dan teknologi masa depan.<br><br>Di balik perjalanan ini, saya juga mendapatkan dukungan emosional yang penting. Kepercayaan dan semangat dari orang terdekat saya, khususnya Rizkia Sekar Defi Azzahra, menjadi pengingat bahwa proses
+            belajar yang panjang tidak harus dilalui sendirian. Dukungan tersebut membantu saya tetap konsisten, tenang, dan percaya pada proses, bahkan ketika jalur yang saya tempuh terasa tidak umum.<br><br>Saya menggabungkan ketelitian logika masa
+            depan dengan empati budaya dan kesadaran diri. Dengan semangat continuous learning, saya siap beradaptasi, bertumbuh, dan memberikan kontribusi nyata dalam dinamika teknologi global yang penuh tantangan.<br><br>
+        </p>
+
+        <!-- MERGED BACKGROUND VISUAL -->
+        <div class="background-photos">
+            <img src="https://i.imgur.com/2AQBwac.jpeg" alt="maulana yasyfa'u al azhiim yudho leksono">
+            <img src="https://i.imgur.com/6WwmCMh.png" alt="my first project">
+            <img src="https://i.imgur.com/rIMfgb3.jpeg" alt=" Rizkia Sekar Defi Azzahra">
+        </div>
+
+        <script>
+            // Fade in
+            window.addEventListener("load", () => {
+                document.body.classList.add("page-loaded");
+            });
+
+            // Reveal background photos on scroll
+            const bg = document.querySelector(".background-photos");
+
+            const revealBg = () => {
+                const top = bg.getBoundingClientRect().top;
+                if (top < window.innerHeight - 120) {
+                    bg.classList.add("show");
+                }
+            };
+
+            window.addEventListener("scroll", revealBg);
+            revealBg();
+        </script>
+    </section>
+
+</html>
