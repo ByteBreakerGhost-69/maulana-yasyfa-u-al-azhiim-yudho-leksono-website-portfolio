@@ -55,7 +55,6 @@ body{
   overflow-x:hidden;
   opacity:0;
   transition:.6s;
-  padding-top:100%;
 }
 body.loaded{opacity:1;}
 
@@ -84,18 +83,12 @@ body.loaded{opacity:1;}
 .menu-toggle{font-size:24px;cursor:pointer;}
 
  /* WRAPPER YANG FIXED */
-.nav-wrapper{
+nav {
   position:fixed;
   top:16px;
   left:50%;
   transform:translateX(-50%);
   width:92%;
-  z-index:1000;
-}
-
-/* NAVBAR ASLI */
-nav{
-  width:100%;
   padding:12px 18px;
   background:var(--glass);
   backdrop-filter:blur(16px);
@@ -104,7 +97,8 @@ nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-}           /* ⬅️ SUPAYA SELALU DI ATAS */
+  z-index:999;
+}
   
   
 nav ul{
@@ -326,7 +320,7 @@ footer{
 
 <body>
 
-<nav class="nav-wrapper">
+<nav>
   <div class="logo">
     <a href="#home">
       <img src="images/Maulana.png" alt="maulana">
