@@ -164,23 +164,66 @@
       font-size:14px;
     }
 
-    /* ================= SKILLS ================= */
-    #skills{text-align:center;}
 
-    .marquee{overflow:hidden;margin-top:40px;}
-    .track{
-      display:flex;
-      gap:40px;
-      width:max-content;
-      animation:scroll 16s linear infinite;
-    }
-    @keyframes scroll{to{transform:translateX(-50%);}}
+    /* ================= TOOLS / SKILLS ================= */
 
-    .track span{
-      white-space:nowrap;
-      font-size:22px;
-      color:var(--text-soft);
-    }
+#skills {
+  text-align: center;
+}
+
+.tools-marquee {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
+  position: relative;
+}
+
+.tools-track {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+  animation: tools-scroll 18s linear infinite;
+  align-items: center;
+}
+
+.tools-track img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.9);
+  opacity: 0.8;
+  transition: 0.4s ease;
+}
+
+/* hover effect */
+.tools-track img:hover {
+  filter: grayscale(0%) brightness(1.2);
+  opacity: 1;
+  transform: scale(1.15);
+  box-shadow: 0 0 25px rgba(0, 246, 255, 0.6);
+}
+
+/* pause when hover */
+.tools-marquee:hover .tools-track {
+  animation-play-state: paused;
+}
+
+@keyframes tools-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .tools-track img {
+    width: 54px;
+    height: 54px;
+  }
+}
 
     /* ================= PROJECTS ================= */
     .laboratory{text-align:center;}
@@ -318,11 +361,29 @@
 </section>
 
 <section id="skills">
-  <h2>Skills</h2>
-  <div class="marquee">
-    <div class="track">
-      <span>Solidity • Ethereum • Rust • Web3 • Quantum • React • python • HTML • CSS • javascript •</span>
-      <span>Solidity • Ethereum • Rust • Web3 • Quantum • React • python • HTML • CSS • javascript •</span>
+  <h2>Tools & Technologies</h2>
+
+  <div class="tools-marquee">
+    <div class="tools-track">
+      <!-- BARIS 1 -->
+      <img src="images/solidity.png" alt="Solidity">
+      <img src="images/ethereum.png" alt="Ethereum">
+      <img src="images/rust.png" alt="Rust">
+      <img src="images/web3.png" alt="Web3">
+      <img src="images/react.png" alt="React">
+      <img src="images/node.png" alt="NodeJS">
+      <img src="images/qiskit.png" alt="Qiskit">
+      <img src="images/python.png" alt="python">
+
+      <!-- DUPLIKASI BIAR LOOP HALUS -->
+      <img src="images/solidity.png" alt="solidity">
+      <img src="images/ethereum.png" alt="etherium">
+      <img src="images/rust.png" alt="rust">
+      <img src="images/web3.png" alt="Web3">
+      <img src="images/react.png" alt="React">
+      <img src="images/node.png" alt="NodeJS">
+      <img src="images/qiskit.png" alt="Qiskit">
+      <img src="images/python.png" alt="python">
     </div>
   </div>
 </section>
