@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maulana Yasyfa'u Al Azhiim Yudho Leksono</title>
-
+<link rel="icon" type="image/png" href="images/maulana.png">
+  
 <style>
 :root{
   --bg-main:#06080f;
@@ -58,6 +59,18 @@ body{
 body.loaded{opacity:1;}
 
 /* ================= NAV ================= */
+
+  .logo img{
+  height:34px;          /* ukuran logo */
+  width:auto;
+  display:block;
+  filter:drop-shadow(0 0 6px rgba(0,255,255,.6));
+  transition:.3s ease;
+}
+
+.logo img:hover{
+  transform:scale(1.1);
+}
 nav{
   position:fixed;
   top:16px;
@@ -304,7 +317,11 @@ footer{
 <body>
 
 <nav>
-  <div class="logo"><a href="#home">MY.</a></div>
+  <div class="logo">
+  <a href="#home">
+    <img src="images/maulana.png" alt="Logo MY">
+  </a>
+  </div>
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   <ul id="menu">
     <li><a href="#home">Home</a></li>
