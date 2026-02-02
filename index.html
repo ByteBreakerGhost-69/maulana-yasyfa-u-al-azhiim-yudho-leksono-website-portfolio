@@ -16,6 +16,33 @@
   --neon-purple:#8a6bff;
 }
 
+  /* ================= NEON GLOW TEXT ================= */
+.neon-blue{
+  color:#7fe9ff;
+  text-shadow:
+    0 0 5px rgba(0,240,255,.6),
+    0 0 10px rgba(0,240,255,.6),
+    0 0 20px rgba(0,240,255,.5),
+    0 0 40px rgba(0,240,255,.4);
+  animation:neonPulse 2.8s ease-in-out infinite;
+}
+
+/* denyut cahaya */
+@keyframes neonPulse{
+  0%,100%{
+    text-shadow:
+      0 0 6px rgba(0,240,255,.6),
+      0 0 14px rgba(0,240,255,.6),
+      0 0 28px rgba(0,240,255,.5);
+  }
+  50%{
+    text-shadow:
+      0 0 10px rgba(0,240,255,.9),
+      0 0 24px rgba(0,240,255,.9),
+      0 0 50px rgba(0,240,255,.8);
+  }
+}
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 
@@ -292,15 +319,15 @@ footer{
   <div class="profile">
     <img src="images/Maulana Yasyfa'u Al Azhiim Yudho Leksono.jpg" alt="Maulana Yasyfa'u Al Azhiim Yudho Leksono">
   </div>
-  <h1>MAULANA YASYFA'U AL AZHIIM YUDHO LEKSONO</h1>
-  <p>Building the Future — Web3 & Quantum Enthusiast</p>
+  <h1 class="neon-blue">MAULANA YASYFA'U AL AZHIIM YUDHO LEKSONO</h1>
+  <p class="neon-blue">Building the Future — Web3 & Quantum Enthusiast</p>
   <a href="#about" class="btn">Explore My Journey</a>
 </section>
 
 <section id="about">
   <div class="about-head">
     <div>
-      <h2>Identity & Philosophy</h2>
+      <h2 class="neon-blue">Identity & Philosophy</h2>
       <a href="story.html" class="btn">Storytelling</a>
     </div>
     <div>
@@ -316,7 +343,7 @@ footer{
 </section>
 
 <section id="skills">
-  <h2>Tools & Technologies</h2>
+  <h2 class="neon-blue">Tools & Technologies</h2>
   <div class="tools-marquee">
     <div class="tools-track">
       <img src="images/solidity.png" alt="solidity">
@@ -335,7 +362,7 @@ footer{
 </section>
 
 <section id="projects">
-  <h2>The Laboratory</h2>
+  <h2 class="neon-blue">The Laboratory</h2>
   <div class="project-grid">
     <div class="project-card">
       <img src="images/proyek ERC20 ku ( KKRN ERC20 ).png" alt="proyek ERC20 ku ( KKRN ERC20 )">
@@ -351,7 +378,7 @@ footer{
 </section>
 
 <section id="contact">
-  <h2>Let’s Collaborate</h2>
+  <h2 class="neon-blue">Let’s Collaborate</h2>
   <div class="socials">
     <a href="https://www.linkedin.com/in/maulana-yasyfa-u-al-azhiim-yudho-leksono-95649a376?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ">LinkedIn</a>
     <a href=" https://www.instagram.com/dekode.detik?igsh=MTMya3hkMDNsZmI3bA==">Instagram</a>
