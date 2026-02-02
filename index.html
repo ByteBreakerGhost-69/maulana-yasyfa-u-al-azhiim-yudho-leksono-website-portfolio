@@ -71,8 +71,19 @@ body.loaded{opacity:1;}
 .logo img:hover{
   transform:scale(1.1);
 }
-nav{
-  position:fixed;
+
+
+.logo a{
+  color:var(--neon-cyan);
+  font-weight:700;
+  font-size:20px;
+  text-decoration:none;
+}
+
+.menu-toggle{font-size:24px;cursor:pointer;}
+
+  nav{
+  position:fixed;          /* ⬅️ KUNCI UTAMA */
   top:16px;
   left:50%;
   transform:translateX(-50%);
@@ -85,18 +96,9 @@ nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  z-index:999;
-}
-
-.logo a{
-  color:var(--neon-cyan);
-  font-weight:700;
-  font-size:20px;
-  text-decoration:none;
-}
-
-.menu-toggle{font-size:24px;cursor:pointer;}
-
+  z-index:1000;            /* ⬅️ SUPAYA SELALU DI ATAS */
+  }
+  
 nav ul{
   position:absolute;
   top:70px;
