@@ -151,30 +151,49 @@ p{color:var(--text-soft);}
 }
 
 /* ================= SKILLS ================= */
-#skills{text-align:center;}
+#skills{
+  text-align:center;
+}
 
+/* marquee container */
 .tools-marquee{
   margin-top:40px;
   overflow:hidden;
+  position:relative;
 }
+
+/* track jalan */
 .tools-track{
   display:flex;
   gap:50px;
   width:max-content;
-  animation:scroll 18s linear infinite;
   align-items:center;
+  animation:scroll 20s linear infinite;
 }
+
+/* animasi geser */
 @keyframes scroll{
+  from{transform:translateX(0);}
   to{transform:translateX(-50%);}
 }
+
+/* LOGO TOOLS */
 .tools-track img{
   width:70px;
   height:70px;
   object-fit:contain;
-  filter:grayscale(100%);
-  opacity:.8;
-  transition:.4s;
+
+  /* ⬇️ INI YANG DIUBAH */
+  filter: grayscale(60%) brightness(1.05);
+  opacity:.75;
+
+  transition: 
+    transform .4s ease,
+    filter .4s ease,
+    opacity .4s ease;
 }
+
+/* hover = full color */
 .tools-track img:hover{
   filter:none;
   opacity:1;
