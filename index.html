@@ -443,6 +443,27 @@ footer{
 .theme-option:hover{
   background:rgba(0,255,255,.15);
 }
+
+  #tracker {
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:8px;
+  z-index:3000;
+  font-family:sans-serif;
+}
+
+#tracker table{
+  border-collapse:collapse;
+}
+
+#tracker td{
+  padding:2px 6px;
+}
 </style>
 </head>
 
@@ -554,6 +575,14 @@ footer{
   </div>
   <footer>© 2026 Maulana Yasyfa'u Al Azhiim Yudho Leksono</footer>
 </section>
+  
+  <!-- Mini Tracker -->
+<div id="tracker">
+  <table>
+    <tr><td>Page Visits:</td><td id="visitCount">0</td></tr>
+    <tr><td>Link Clicks:</td><td id="linkCount">0</td></tr>
+  </table>
+</div>
 
 
 <script>
@@ -625,6 +654,27 @@ function typeEffect(){
   setTimeout(typeEffect, isDeleting ? deleteSpeed : speed);
 }
 </script>
+
+  <script>
+// ================= PAGE VISITS =================
+let visits = parseInt(localStorage.getItem('visits') || '0');
+visits++;
+localStorage.setItem('visits', visits);
+document.getElementById('visitCount').textContent = visits;
+
+// ================= LINK CLICKS =================
+let links = document.querySelectorAll('a');
+let clicks = parseInt(localStorage.getItem('linkClicks') || '0');
+document.getElementById('linkCount').textContent = clicks;
+
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    clicks++;
+    localStorage.setItem('linkClicks', clicks);
+    document.getElementById('linkCount').textContent = clicks;
+  });
+});
+  </script>
 
 </body>
 </html>
