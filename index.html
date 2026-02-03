@@ -80,7 +80,37 @@ body.loaded{opacity:1;}
   text-decoration:none;
 }
 
-.menu-toggle{font-size:24px;cursor:pointer;}
+.menu-toggle{
+  width:36px;
+  height:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+  z-index:1000;
+}
+
+.menu-toggle span{
+  height:3px;
+  width:100%;
+  background:var(--neon-cyan);
+  border-radius:4px;
+  transition:.4s ease;
+  box-shadow:0 0 8px rgba(0,255,255,.7);
+}
+
+/* ANIMASI JADI X */
+.menu-toggle.active span:nth-child(1){
+  transform:rotate(45deg) translate(6px,6px);
+}
+
+.menu-toggle.active span:nth-child(2){
+  opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3){
+  transform:rotate(-45deg) translate(6px,-6px);
+}
 
  /* WRAPPER YANG FIXED */
 nav {
@@ -106,13 +136,27 @@ nav ul{
   top:70px;
   left:0;
   width:100%;
-  background:var(--glass);
-  backdrop-filter:blur(16px);
+  background:#06080f; /* SOLID */
   border-radius:20px;
   list-style:none;
   display:none;
   flex-direction:column;
+  border:1px solid rgba(0,255,255,.25);
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
 }
+
+  nav ul{
+  transform:translateY(-12px);
+  opacity:0;
+  transition:.4s ease;
+}
+
+nav ul.show{
+  display:flex;
+  transform:translateY(0);
+  opacity:1;
+}
+  
 nav ul.show{display:flex;}
 nav ul li a{
   padding:14px;
@@ -351,7 +395,11 @@ footer{
     </a>
   </div>
 
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<div class="menu-toggle" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
   <ul id="menu">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
@@ -439,10 +487,16 @@ footer{
   <footer>© 2026 Maulana Yasyfa'u Al Azhiim Yudho Leksono</footer>
 </section>
 
+
 <script>
-window.onload=()=>document.body.classList.add("loaded");
+window.onload=()=>{
+  document.body.classList.add("loaded");
+  typeEffect();
+}
+
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("show");
+  document.querySelector(".menu-toggle").classList.toggle("active");
 }
 </script>
 
