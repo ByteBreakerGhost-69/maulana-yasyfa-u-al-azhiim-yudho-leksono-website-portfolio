@@ -561,6 +561,88 @@ footer{
   opacity: 1;
   text-shadow: 0 0 20px #00f6ff, 0 0 40px #00f6ff, 0 0 60px #00f6ff;
 }
+
+  /* PRELOADER */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#preloader .preload-text {
+  font-size: 3rem;
+  color: #00f6ff;
+  opacity: 0;
+  margin-top: 20px;
+  text-shadow: 0 0 5px #00f6ff, 0 0 10px #00f6ff;
+  transition: opacity 1s, text-shadow 1s;
+}
+
+#preloader .preload-text.visible {
+  opacity: 1;
+  text-shadow: 0 0 20px #00f6ff, 0 0 40px #00f6ff, 0 0 60px #00f6ff;
+}
+
+/* blackhole tetap dari CSS kamu */
+.blackhole {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blackhole .center {
+  width: 20px;
+  height: 20px;
+  background: #00f6ff;
+  border-radius: 50%;
+  box-shadow: 0 0 30px #00f6ff, 0 0 60px #00f6ff;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.blackhole .ring {
+  position: absolute;
+  border: 2px solid rgba(0,246,255,0.3);
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.blackhole .ring1 { width:60px; height:60px; animation-duration:2s;}
+.blackhole .ring2 { width:90px; height:90px; animation-duration:3s;}
+.blackhole .ring3 { width:120px; height:120px; animation-duration:4s;}
+
+.blackhole .particles {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle, #00f6ff 2px, transparent 2px);
+  background-size:6px 6px;
+  animation: swirl 1.8s linear infinite;
+}
+
+/* Animasi keyframes */
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1);}
+  50% { transform: scale(1.4);}
+}
+
+@keyframes swirl {
+  0% { transform: rotate(0deg) scale(1);}
+  50% { transform: rotate(180deg) scale(1.1);}
+  100% { transform: rotate(360deg) scale(1);}
+}
   
 
 
@@ -571,8 +653,15 @@ footer{
 
 <!-- PRELOADER -->
 <div id="preloader">
-  <h1 class="preload-text" data-text="Maulana">Maulana</h1>
-  <h1 class="preload-text" data-text="Azhiim">Azhiim</h1>
+  <div class="blackhole">
+    <div class="center"></div>
+    <div class="ring ring1"></div>
+    <div class="ring ring2"></div>
+    <div class="ring ring3"></div>
+    <div class="particles"></div>
+  </div>
+  <h1 class="preload-text">MAULANA</h1>
+  <h1 class="preload-text">AZHIIM</h1>
 </div>
 
   <nav>
@@ -800,6 +889,23 @@ window.addEventListener('load', () => {
     setTimeout(()=> preloader.style.display="none", 500);
   }, 4000);
 });
+
+    window.addEventListener('load', () => {
+  const texts = document.querySelectorAll('#preloader .preload-text');
+  texts.forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), i * 1500);
+  });
+
+  // Hapus preloader setelah animasi selesai
+  setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = "0";
+    preloader.style.transition = "opacity 0.5s ease";
+    setTimeout(() => preloader.style.display = "none", 500);
+  }, 4000);
+});
 </script>
+
+  
 </body>
 </html>
