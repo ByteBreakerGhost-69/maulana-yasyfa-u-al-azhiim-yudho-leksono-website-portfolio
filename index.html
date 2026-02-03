@@ -493,53 +493,11 @@ footer{
   text-shadow: 0 0 20px #00f6ff, 0 0 40px #00f6ff, 0 0 60px #00f6ff;
 }
 
-  /* PRELOADER */
-#preloader {
-  position: fixed;
-  inset: 0;
-  background: var(--bg-main);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-#preloader .preload-text {
-  font-size: 3rem;
-  color: #00f6ff;
-  opacity: 0;
-  margin-top: 20px;
-  text-shadow: 0 0 5px #00f6ff, 0 0 10px #00f6ff;
-  transition: opacity 1s, text-shadow 1s;
-}
-
-#preloader .preload-text.visible {
-  opacity: 1;
-  text-shadow: 0 0 20px #00f6ff, 0 0 40px #00f6ff, 0 0 60px #00f6ff;
-}
-
-
-  
-
 
 </style>
 </head>
 
 <body>
-
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="blackhole">
-    <div class="center"></div>
-    <div class="ring ring1"></div>
-    <div class="ring ring2"></div>
-    <div class="ring ring3"></div>
-    <div class="particles"></div>
-  </div>
-  <h1 class="preload-text">MAULANA</h1>
-  <h1 class="preload-text">AZHIIM</h1>
-</div>
 
   <nav>
     <div class="logo" onclick="toggleThemeMenu()">
