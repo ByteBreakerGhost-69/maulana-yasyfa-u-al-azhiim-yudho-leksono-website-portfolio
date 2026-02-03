@@ -136,13 +136,23 @@ nav ul{
   top:70px;
   left:0;
   width:100%;
-  background:#06080f; /* SOLID */
+  background:#06080f;
   border-radius:20px;
   list-style:none;
   display:none;
   flex-direction:column;
   border:1px solid rgba(0,255,255,.25);
   box-shadow:0 20px 40px rgba(0,0,0,.6);
+
+  transform:translateY(-12px);
+  opacity:0;
+  transition:.4s ease;
+}
+
+nav ul.show{
+  display:flex;
+  transform:translateY(0);
+  opacity:1;
 }
 
   nav ul{
@@ -372,17 +382,24 @@ footer{
 @media(min-width:768px){
   nav ul{
     position:static;
-    display:flex;
+    display:flex !important;
     flex-direction:row;
     background:none;
+    border:none;
+    box-shadow:none;
+    opacity:1;
+    transform:none;
     gap:24px;
   }
-  .menu-toggle{display:none;}
-  section{padding:120px 10%;}
-  .about-head{grid-template-columns:1fr 1.2fr;}
-  .project-grid{grid-template-columns:repeat(2,1fr);}
-  .socials{grid-template-columns:repeat(3,1fr);}
-}
+
+  nav ul li a{
+    padding:0;
+  }
+
+  .menu-toggle{
+    display:none;
+  }
+  }
 </style>
 </head>
 
@@ -489,10 +506,10 @@ footer{
 
 
 <script>
-window.onload=()=>{
+window.onload = () => {
   document.body.classList.add("loaded");
-  typeEffect();
-}
+  typeEffect(); // ini untuk typewriter kamu
+};
 
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("show");
