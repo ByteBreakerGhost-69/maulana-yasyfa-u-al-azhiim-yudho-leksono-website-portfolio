@@ -67,12 +67,12 @@ html{scroll-behavior:smooth;}
 
 body{
   font-family:Inter,Segoe UI,sans-serif;
-  background:radial-gradient(circle at top,#0c1125,#05070e);
+  background:var(--bg-main);
   color:var(--text-main);
   line-height:1.7;
   overflow-x:hidden;
   opacity:0;
-  transition:.6s;
+  transition:background .6s ease, color .6s ease;
 }
 body.loaded{opacity:1;}
 
@@ -148,42 +148,32 @@ nav {
   z-index:999;
 }
   
-  
-nav ul{
+  nav ul{
   position:absolute;
   top:70px;
   left:0;
   width:100%;
+  list-style:none;
   background:#06080f;
   border-radius:20px;
-  list-style:none;
-  display:none;
-  flex-direction:column;
   border:1px solid rgba(0,255,255,.25);
   box-shadow:0 20px 40px rgba(0,0,0,.6);
 
+  display:flex;
+  flex-direction:column;
+
   transform:translateY(-12px);
   opacity:0;
+  pointer-events:none;
   transition:.4s ease;
 }
 
 nav ul.show{
-  display:flex;
   transform:translateY(0);
   opacity:1;
+  pointer-events:auto;
 }
 
-  nav ul{
-  transform:translateY(-12px);
-  opacity:0;
-  transition:.4s ease;
-}
-
-nav ul.show{
-  display:flex;
-  transform:translateY(0);
-  opacity:1;
-}
   
 nav ul.show{display:flex;}
 nav ul li a{
