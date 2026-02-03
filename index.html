@@ -535,6 +535,75 @@ footer{
 #tracker td{
   padding:2px 6px;
 }
+
+  /* ===== PRELOADER BLACK HOLE ===== */
+#preloader {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#06080f;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.blackhole {
+  position: relative;
+  width:120px;
+  height:120px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.blackhole .center {
+  width:20px;
+  height:20px;
+  background:#00f6ff;
+  border-radius:50%;
+  box-shadow: 0 0 30px #00f6ff, 0 0 60px #00f6ff;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.blackhole .ring {
+  position:absolute;
+  border:2px solid rgba(0,246,255,0.3);
+  border-radius:50%;
+  animation: spin 2s linear infinite;
+}
+
+.blackhole .ring1 { width:60px; height:60px; animation-duration:2s;}
+.blackhole .ring2 { width:90px; height:90px; animation-duration:3s;}
+.blackhole .ring3 { width:120px; height:120px; animation-duration:4s;}
+
+.blackhole .particles {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle, #00f6ff 2px, transparent 2px);
+  background-size:6px 6px;
+  animation: swirl 1.8s linear infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1);}
+  50% { transform: scale(1.4);}
+}
+
+@keyframes swirl {
+  0% { transform: rotate(0deg) scale(1);}
+  50% { transform: rotate(180deg) scale(1.1);}
+  100% { transform: rotate(360deg) scale(1);}
+  }
 </style>
 </head>
 
@@ -779,6 +848,20 @@ window.addEventListener('load', () => {
   }, 1500); // 1,5 detik animasi
 });
     </script>
+
+  <!-- semua section website mu di atas -->
+
+<script>
+  // Hapus preloader setelah 2.5 detik
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      preloader.style.transition = "opacity 0.5s ease";
+      setTimeout(()=> preloader.style.display="none", 500);
+    }, 2000); // durasi 2 detik sebelum hilang
+  });
+</script>
 
 </body>
 </html>
