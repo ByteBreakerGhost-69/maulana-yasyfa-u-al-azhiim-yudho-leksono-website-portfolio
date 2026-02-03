@@ -563,31 +563,22 @@ footer{
 
 
 <script>
+/* ================= PAGE LOAD ================= */
 window.onload = () => {
-  document.body.classList.add("loaded");
-  typeEffect(); // ini untuk typewriter kamu
-};
-
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("show");
-  document.querySelector(".menu-toggle").classList.toggle("active");
-}
-  <script>
-window.onload=()=>{
   document.body.classList.add("loaded");
   typeEffect();
 
-  // ambil mode terakhir
   const savedTheme = localStorage.getItem("theme") || "dark";
   document.body.classList.add(savedTheme);
-}
+};
 
+/* ================= MENU MOBILE ================= */
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("show");
   document.querySelector(".menu-toggle").classList.toggle("active");
 }
 
-/* ===== THEME MODE ===== */
+/* ================= THEME MENU ================= */
 function toggleThemeMenu(){
   document.getElementById("themeMenu").classList.toggle("show");
 }
@@ -598,21 +589,8 @@ function setTheme(mode){
   localStorage.setItem("theme", mode);
   document.getElementById("themeMenu").classList.remove("show");
 }
-</script>
-  
-</script>
 
-  <script>
-window.onload=()=>{
-  document.body.classList.add("loaded");
-  typeEffect();
-}
-
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("show");
-}
-
-/* TYPEWRITER EFFECT */
+/* ================= TYPEWRITER ================= */
 const texts = [
   "Web3 Developer",
   "Web3 Auditor",
@@ -638,14 +616,12 @@ function typeEffect(){
   if(!isDeleting){
     typingElement.textContent = current.substring(0, charIndex + 1);
     charIndex++;
-
     if(charIndex === current.length){
       setTimeout(()=>isDeleting=true, delay);
     }
   }else{
     typingElement.textContent = current.substring(0, charIndex - 1);
     charIndex--;
-
     if(charIndex === 0){
       isDeleting = false;
       index = (index + 1) % texts.length;
@@ -654,7 +630,7 @@ function typeEffect(){
 
   setTimeout(typeEffect, isDeleting ? deleteSpeed : speed);
 }
-  </script>
+</script>
 
 </body>
 </html>
