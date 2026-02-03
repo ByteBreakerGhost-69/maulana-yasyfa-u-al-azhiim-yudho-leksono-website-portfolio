@@ -60,6 +60,52 @@ body.dark{
   100% { transform: scale(1); opacity: 1; }
 }
 
+  /* ================= PRELOADER BLACK HOLE ================= */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--bg-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.blackhole {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.blackhole .center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; height: 40px;
+  background: black;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.blackhole .ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotateRing 1.5s linear infinite;
+}
+
+.blackhole .ring1 { width: 60px; height: 60px; animation-duration: 1.5s; }
+.blackhole .ring2 { width: 80px; height: 80px; animation-duration: 2s; }
+.blackhole .ring3 { width: 100px; height: 100px; animation-duration: 2.5s; }
+
+@keyframes rotateRing {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
   /* ================= NEON GLOW TEXT ================= */
 .neon-blue{
   color:#7fe9ff;
@@ -496,7 +542,12 @@ footer{
 
   <!-- PRELOADER -->
 <div id="preloader">
-  <div class="loader"></div>
+  <div class="blackhole">
+    <div class="center"></div>
+    <div class="ring ring1"></div>
+    <div class="ring ring2"></div>
+    <div class="ring ring3"></div>
+  </div>
 </div>
 
   <nav>
@@ -717,6 +768,17 @@ window.addEventListener('load', () => {
   }, 1500); // durasi animasi 1.5 detik
 });
   </script>
+
+    <script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = 0;
+    preloader.style.transition = 'opacity 0.5s ease';
+    setTimeout(() => preloader.style.display = 'none', 500);
+  }, 1500); // 1,5 detik animasi
+});
+    </script>
 
 </body>
 </html>
