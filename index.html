@@ -129,6 +129,30 @@ section{
 }
 
 /* ================= HOME ================= */
+
+  /* ================= TYPEWRITER ================= */
+.typewriter{
+  margin-top:12px;
+  font-size:18px;
+  min-height:28px;
+}
+
+.cursor{
+  margin-left:4px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,50%{opacity:1;}
+  51%,100%{opacity:0;}
+}
+
+/* responsive */
+@media(max-width:600px){
+  .typewriter{
+    font-size:15px;
+  }
+}
 #home{
   min-height:100vh;
   justify-content:center;
@@ -342,7 +366,10 @@ footer{
     <img src="images/Maulana Yasyfa'u Al Azhiim Yudho Leksono.jpg" alt="Maulana Yasyfa'u Al Azhiim Yudho Leksono">
   </div>
   <h1 class="neon-blue">MAULANA YASYFA'U AL AZHIIM YUDHO LEKSONO</h1>
-  <p class="neon-blue">Building the Future — Web3 & Quantum Enthusiast</p>
+<div class="typewriter neon-blue">
+  <span id="typing-text"></span>
+  <span class="cursor">|</span>
+</div>
   <a href="#about" class="btn">Explore My Journey</a>
 </section>
 
@@ -418,6 +445,60 @@ function toggleMenu(){
   document.getElementById("menu").classList.toggle("show");
 }
 </script>
+
+  <script>
+window.onload=()=>{
+  document.body.classList.add("loaded");
+  typeEffect();
+}
+
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+/* TYPEWRITER EFFECT */
+const texts = [
+  "Web3 Developer",
+  "Web3 Auditor",
+  "Web Developer",
+  "Smart Contract Developer",
+  "Smart Contract Auditor",
+  "Cyber Security (Learning Stage)"
+];
+
+let index = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+const speed = 80;
+const deleteSpeed = 45;
+const delay = 1200;
+
+const typingElement = document.getElementById("typing-text");
+
+function typeEffect(){
+  const current = texts[index];
+
+  if(!isDeleting){
+    typingElement.textContent = current.substring(0, charIndex + 1);
+    charIndex++;
+
+    if(charIndex === current.length){
+      setTimeout(()=>isDeleting=true, delay);
+    }
+  }else{
+    typingElement.textContent = current.substring(0, charIndex - 1);
+    charIndex--;
+
+    if(charIndex === 0){
+      isDeleting = false;
+      index = (index + 1) % texts.length;
+    }
+  }
+
+  setTimeout(typeEffect, isDeleting ? deleteSpeed : speed);
+}
+  </script>
 
 </body>
 </html>
