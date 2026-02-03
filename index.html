@@ -17,6 +17,24 @@
   --neon-purple:#8a6bff;
 }
 
+  body.light{
+  --bg-main:#f4f6fb;
+  --text-main:#111;
+  --text-soft:#555;
+}
+
+body.blue{
+  --bg-main:#eaf6ff;
+  --text-main:#062a44;
+  --text-soft:#2b5d85;
+}
+
+body.dark{
+  --bg-main:#06080f;
+  --text-main:#e6e6eb;
+  --text-soft:#a8acc4;
+}
+
   /* ================= NEON GLOW TEXT ================= */
 .neon-blue{
   color:#7fe9ff;
@@ -399,17 +417,50 @@ footer{
   .menu-toggle{
     display:none;
   }
-  }
+}
+  /* ================= THEME MENU ================= */
+.theme-menu{
+  position:fixed;
+  top:90px;
+  left:50%;
+  transform:translateX(-50%) scale(.95);
+  background:#06080f;
+  border:1px solid rgba(0,255,255,.25);
+  border-radius:16px;
+  padding:12px;
+  display:none;
+  flex-direction:column;
+  gap:10px;
+  z-index:2000;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+  transition:.3s ease;
+}
+
+.theme-menu.show{
+  display:flex;
+  transform:translateX(-50%) scale(1);
+}
+
+.theme-option{
+  padding:12px 18px;
+  border-radius:12px;
+  cursor:pointer;
+  background:rgba(255,255,255,.05);
+  color:var(--text-main);
+  transition:.3s;
+}
+
+.theme-option:hover{
+  background:rgba(0,255,255,.15);
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">
-    <a href="#home">
-      <img src="images/Maulana.png" alt="maulana">
-    </a>
+  <nav>
+    <div class="logo" onclick="toggleThemeMenu()">
+    <img src="images/Maulana.png" alt="maulana">
   </div>
 
 <div class="menu-toggle" onclick="toggleMenu()">
@@ -425,6 +476,12 @@ footer{
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+
+  <div class="theme-menu" id="themeMenu">
+  <div class="theme-option" onclick="setTheme('light')">☀️ Light Mode</div>
+  <div class="theme-option" onclick="setTheme('blue')">💙 Blue Bright</div>
+  <div class="theme-option" onclick="setTheme('dark')">🌌 Dark Neon</div>
+  </div>
 
 <section id="home">
   <div class="profile">
@@ -515,6 +572,34 @@ function toggleMenu(){
   document.getElementById("menu").classList.toggle("show");
   document.querySelector(".menu-toggle").classList.toggle("active");
 }
+  <script>
+window.onload=()=>{
+  document.body.classList.add("loaded");
+  typeEffect();
+
+  // ambil mode terakhir
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  document.body.classList.add(savedTheme);
+}
+
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+  document.querySelector(".menu-toggle").classList.toggle("active");
+}
+
+/* ===== THEME MODE ===== */
+function toggleThemeMenu(){
+  document.getElementById("themeMenu").classList.toggle("show");
+}
+
+function setTheme(mode){
+  document.body.classList.remove("light","blue","dark");
+  document.body.classList.add(mode);
+  localStorage.setItem("theme", mode);
+  document.getElementById("themeMenu").classList.remove("show");
+}
+</script>
+  
 </script>
 
   <script>
