@@ -586,14 +586,45 @@ footer{
 .glitch {
     position: relative;
 }
-  
+#neon-particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  overflow:hidden;
+}
+
+.neon-dot{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:#00f2ff;
+  border-radius:50%;
+  box-shadow:
+    0 0 6px #00f2ff,
+    0 0 12px rgba(0,242,255,.8);
+  opacity:.8;
+  animation:
+    float linear infinite,
+    flicker ease-in-out infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+@keyframes flicker{
+  0%,100%{opacity:.3}
+  50%{opacity:1}
+  }  
 
 
 </style>
 </head>
 
 <body>
-
+ <div id="neon-particles"></div>
   <nav>
     <div class="logo" onclick="toggleThemeMenu()">
     <img src="images/Maulana.png" alt="maulana">
@@ -805,6 +836,32 @@ links.forEach(link => {
     document.getElementById('linkCount').textContent = clicks;
   });
 });
+  </script>
+
+
+  <script>
+const container=document.getElementById("neon-particles");
+
+for(let i=0;i<80;i++){
+  const dot=document.createElement("div");
+  dot.className="neon-dot";
+
+  const size=Math.random()*3+2;
+  dot.style.width=size+"px";
+  dot.style.height=size+"px";
+
+  dot.style.left=Math.random()*100+"vw";
+  dot.style.top=Math.random()*100+"vh";
+
+  const duration=Math.random()*20+10;
+  dot.style.animationDuration=
+    duration+"s,"+(Math.random()*4+2)+"s";
+
+  dot.style.animationDelay=
+    Math.random()*-20+"s";
+
+  container.appendChild(dot);
+}
   </script>
 
 
