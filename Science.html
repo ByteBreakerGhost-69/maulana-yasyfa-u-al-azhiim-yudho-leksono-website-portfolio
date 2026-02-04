@@ -1,199 +1,215 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mxxxxxxxx | The Science of Vibration</title>
-    <style>
-        :root {
-            --neon-blue: #00f2ff;
-            --neon-purple: #bc13fe;
-        }
-        body {
-            background-color: #0a0a0a;
-            color: #d1d1d1;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-        .nav {
-            padding: 20px;
-            background: rgba(0,0,0,0.8);
-            position: sticky;
-            top: 0;
-            border-bottom: 1px solid #333;
-        }
-        .nav a {
-            color: var(--neon-blue);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .content {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            background: rgba(15, 15, 15, 0.9);
-            border: 1px solid #222;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0,0,0,1);
-        }
-        h1, h2 {
-            color: var(--neon-blue);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        .quote {
-            font-style: italic;
-            border-left: 3px solid var(--neon-purple);
-            padding-left: 20px;
-            margin: 30px 0;
-            color: #aaa;
-        }
-        .formula-box {
-            background: #111;
-            border: 1px solid #333;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.5rem;
-            color: #fff;
-            margin: 20px 0;
-            box-shadow: inset 0 0 10px rgba(0, 242, 255, 0.1);
-        }
-        .formula-box span {
-            color: var(--neon-blue);
-            display: block;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 50px;
-            font-size: 0.8rem;
-            color: #555;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mxxxxxxxx | The Science of Vibration</title>
+
+<style>
+:root{
+  --neon-blue:#00f2ff;
+  --neon-purple:#bc13fe;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#0a0a0a;
+  color:#d1d1d1;
+  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  line-height:1.6;
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  padding:20px;
+  background:rgba(0,0,0,.85);
+  border-bottom:1px solid #333;
+}
+
+.nav a{
+  color:var(--neon-blue);
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.content{
+  max-width:800px;
+  margin:60px auto;
+  padding:40px;
+  background:rgba(15,15,15,.95);
+  border:1px solid #222;
+  border-radius:12px;
+  box-shadow:0 0 30px rgba(0,0,0,1);
+}
+
+h1,h2{
+  color:var(--neon-blue);
+  text-transform:uppercase;
+  letter-spacing:3px;
+}
+
+.quote{
+  margin:30px 0;
+  padding-left:20px;
+  border-left:3px solid var(--neon-purple);
+  font-style:italic;
+  color:#aaa;
+}
+
+.formula-box{
+  margin:25px 0;
+  padding:20px;
+  background:#111;
+  border:1px solid #333;
+  border-radius:8px;
+  text-align:center;
+  font-family:'Courier New',monospace;
+  font-size:1.4rem;
+  color:#fff;
+  box-shadow:inset 0 0 10px rgba(0,242,255,.15);
+}
+
+.formula-box span{
+  display:block;
+  margin-top:10px;
+  font-size:.85rem;
+  color:var(--neon-blue);
+}
+
+hr{
+  border:.5px solid #222;
+  margin:45px 0;
+}
+
+footer{
+  text-align:center;
+  padding:50px 20px;
+  font-size:.8rem;
+  color:#555;
+}
+</style>
 </head>
+
 <body>
 
-    <canvas id="canvas"></canvas>
+<canvas id="canvas"></canvas>
 
-    <div class="nav">
-        <a href="index.html">← KEMBALI</a>
-    </div>
+<div class="nav">
+  <!-- JIKA SATU FOLDER, GANTI JADI: href="index.html" -->
+  <a href="../index.html">← KEMBALI</a>
+</div>
 
-    <div class="content">
-        <h1>The Unified Theory of Vibration</h1>
-        <p>Oleh: <strong>Mxxxxxxxx</strong></p>
+<div class="content">
+  <h1>The Unified Theory of Vibration</h1>
+  <p>Oleh: <strong>Mxxxxxxxx</strong></p>
 
-        <div class="quote">
-            "If you want to find the secrets of the universe, think in terms of energy, frequency and vibration." — <strong>Nikola Tesla</strong>
-        </div>
+  <div class="quote">
+    "If you want to find the secrets of the universe, think in terms of energy, frequency and vibration."
+    — <strong>Nikola Tesla</strong>
+  </div>
 
-        <h2>I. Energi adalah Frekuensi</h2>
-        <p>Alam semesta dimulai dari sebuah frekuensi. Energi tidaklah diam, melainkan paket gelombang yang terus berdenyut.</p>
-        <div class="formula-box">
-            E = h × f
-            <span>(E: Energy, h: Planck’s Constant, f: Frequency)</span>
-        </div>
-        <p>Rumus ini menjelaskan bahwa kualitas realitas ditentukan oleh getaran. Semakin tinggi frekuensinya, semakin murni energinya. Inilah "Kun" dalam bahasa sains.</p>
+  <h2>I. Energi adalah Frekuensi</h2>
+  <p>Alam semesta dimulai dari sebuah frekuensi. Energi tidaklah diam, melainkan paket gelombang yang terus berdenyut.</p>
 
-        <hr style="border:0.5px solid #222; margin: 40px 0;">
+  <div class="formula-box">
+    E = h × f
+    <span>(Energy = Planck Constant × Frequency)</span>
+  </div>
 
-        <h2>II. Manifestasi Materi</h2>
-        <p>Materi hanyalah energi yang melambat. Tubuh dan planet hanyalah ilusi dari cahaya yang memadat.</p>
-        <div class="formula-box">
-            E = m × c²
-            <span>(m: Mass, c: Speed of Light)</span>
-        </div>
-        <p>Kita adalah kumpulan cahaya yang terikat hukum fisik. Memahami ini berarti memahami cara meregenerasi sel melalui sinkronisasi atom kembali ke energi asalnya.</p>
+  <p>Semakin tinggi frekuensi, semakin murni energinya. Inilah konsep "Kun" dalam bahasa sains.</p>
 
-        <hr style="border:0.5px solid #222; margin: 40px 0;">
+  <hr>
 
-        <h2>III. Resonansi Agung (Sangkakala)</h2>
-        <p>Kehancuran adalah fenomena resonansi. Ketika frekuensi eksternal mencapai ambang batas kritis materi, struktur atom akan terurai.</p>
-        <div class="quote" style="border-color: red;">
-            "Dan ditiuplah Sangkakala, maka matilah siapa yang di langit dan di bumi..." (QS. Az-Zumar: 68)
-        </div>
-        <p>Sangkakala adalah gelombang resonansi absolut yang melepaskan ikatan massa (m) kembali menjadi energi murni (E) dalam sekejap.</p>
+  <h2>II. Manifestasi Materi</h2>
+  <p>Materi hanyalah energi yang melambat. Cahaya yang memadat.</p>
 
-        <hr style="border:0.5px solid #222; margin: 40px 0;">
+  <div class="formula-box">
+    E = m × c²
+    <span>(Energy = Mass × Speed of Light²)</span>
+  </div>
 
-        <h2>IV. Protokol Ketidakpastian</h2>
-        <p>Alam semesta memiliki sistem keamanan alami yang melindungi rahasianya sendiri.</p>
-        <div class="formula-box">
-            Δx × Δp ≥ ℏ / 2
-            <span>(Prinsip Ketidakpastian Heisenberg)</span>
-        </div>
-        <p>Ini adalah dasar dari keamanan Quantum. Sesuatu tidak dapat diintip tanpa mengubah sifat dasarnya. Privasi yang mutlak oleh hukum alam.</p>
-    </div>
+  <p>Kita adalah cahaya yang terikat hukum fisika.</p>
 
-    <footer>
-        Mxxxxxxxx | Thought. Frequency. Light. | 2026
-    </footer>
+  <hr>
 
-    <script>
-        // Efek Partikel Sederhana di Background
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+  <h2>III. Resonansi Agung</h2>
+  <p>Kehancuran adalah resonansi. Ketika frekuensi mencapai ambang kritis, struktur runtuh.</p>
 
-        let particles = [];
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 242, 255, 0.3)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
+  <div class="quote" style="border-color:red;">
+    "Dan ditiuplah sangkakala..." (QS. Az-Zumar: 68)
+  </div>
 
-        function init() {
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
+  <hr>
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animate);
-        }
+  <h2>IV. Protokol Ketidakpastian</h2>
+  <p>Alam memiliki sistem keamanan alami.</p>
 
-        init();
-        animate();
+  <div class="formula-box">
+    Δx × Δp ≥ ℏ / 2
+    <span>Prinsip Ketidakpastian Heisenberg</span>
+  </div>
+</div>
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    </script>
+<footer>
+  maulana-science | Thought • Frequency • Light | 2026
+</footer>
+
+<script>
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+const particles=[];
+class Particle{
+  constructor(){
+    this.x=Math.random()*canvas.width;
+    this.y=Math.random()*canvas.height;
+    this.s=Math.random()*2;
+    this.vx=Math.random()*.5-.25;
+    this.vy=Math.random()*.5-.25;
+  }
+  update(){
+    this.x+=this.vx;
+    this.y+=this.vy;
+    if(this.x<0) this.x=canvas.width;
+    if(this.x>canvas.width) this.x=0;
+    if(this.y<0) this.y=canvas.height;
+    if(this.y>canvas.height) this.y=0;
+  }
+  draw(){
+    ctx.fillStyle="rgba(0,242,255,.35)";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.s,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+for(let i=0;i<100;i++) particles.push(new Particle());
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
 </body>
 </html>
