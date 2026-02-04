@@ -619,6 +619,65 @@ footer{
   50%{opacity:1}
   }  
 
+  .quantum-box{
+  max-width:900px;
+  margin:80px auto;
+  padding:40px 35px;
+  background:linear-gradient(
+    180deg,
+    rgba(0,242,255,.05),
+    rgba(10,10,20,.85)
+  );
+  border:1px solid rgba(0,242,255,.35);
+  border-radius:18px;
+  box-shadow:
+    0 0 25px rgba(0,242,255,.15),
+    inset 0 0 20px rgba(0,242,255,.05);
+  backdrop-filter:blur(6px);
+}
+
+.quantum-text{
+  color:#cfffff;
+  font-size:1.05rem;
+  line-height:1.9;
+  letter-spacing:.3px;
+  text-shadow:
+    0 0 6px rgba(0,242,255,.6),
+    0 0 12px rgba(0,242,255,.35);
+}
+
+.quantum-text strong{
+  color:#00f2ff;
+  text-shadow:
+    0 0 8px #00f2ff,
+    0 0 16px rgba(0,242,255,.8);
+}
+
+.quantum-glow{
+  position:relative;
+}
+
+.quantum-glow::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:20px;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,242,255,.35),
+    transparent
+  );
+  filter:blur(12px);
+  opacity:.6;
+  animation:scan 6s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes scan{
+  from{transform:translateX(-60%);}
+  to{transform:translateX(60%);}
+    }
 
 </style>
 </head>
@@ -725,6 +784,23 @@ footer{
         <span class="glitch">AKSES TEORI ALAM SEMESTA</span>
     </a>
 </div>
+
+  <div class="quantum-box quantum-glow">
+  <p class="quantum-text">
+    Di era di mana data adalah getaran dan privasi adalah hak fundamental,
+    <strong>Maulana yasyfa'u Al Azhiim</strong> mengintegrasikan desentralisasi Web3 dengan
+    kepastian hukum Mekanika Kuantum. Kami tidak lagi mengandalkan dinding api
+    (firewalls) yang rapuh, melainkan menggunakan
+    <strong>Prinsip Ketidakpastian Heisenberg</strong> untuk mengunci data sensitif.
+    Dalam jaringan ini, informasi tidak hanya terenkripsi, ia terjalin
+    (<em>entangled</em>); di mana setiap upaya intrusi secara otomatis akan
+    meruntuhkan fungsi gelombang data itu sendiri.
+    <br><br>
+    Ini adalah benteng terakhir keamanan informasi: sebuah protokol di mana data
+    sensitif menjadi <strong>abadi</strong>, <strong>tak terlihat</strong>, dan
+    <strong>tak terjamah</strong> oleh logika komputasi klasik.
+  </p>
+  </div>
 
 <section id="contact">
   <h2 class="neon-blue">Let’s Collaborate</h2>
