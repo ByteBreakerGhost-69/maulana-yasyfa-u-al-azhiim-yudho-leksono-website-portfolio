@@ -28,24 +28,40 @@
   --text-soft:#a8acc4;
   --neon-cyan:#00f6ff;
   --neon-purple:#8a6bff;
+    /* 🔥 TAMBAHAN UNTUK PROGRESS BAR */
+  --progress-1:var(--neon-cyan);
+  --progress-2:var(--neon-purple);
+  --progress-3:var(--neon-cyan);
 }
 
-  body.light{
+body.light{
   --bg-main:#f4f6fb;
   --text-main:#111;
   --text-soft:#555;
+  
+  --progress-1:#3b82f6;
+  --progress-2:#22c55e;
+  --progress-3:#3b82f6;
 }
 
 body.blue{
   --bg-main:#eaf6ff;
   --text-main:#062a44;
   --text-soft:#2b5d85;
+
+  --progress-1:#0ea5e9;
+  --progress-2:#38bdf8;
+  --progress-3:#0ea5e9;
 }
 
 body.dark{
   --bg-main:#06080f;
   --text-main:#e6e6eb;
   --text-soft:#a8acc4;
+
+  --progress-1:var(--neon-cyan);
+  --progress-2:var(--neon-purple);
+  --progress-3:var(--neon-cyan);
 }
 
 
@@ -775,18 +791,18 @@ body {
 }
 
 /* BAR */
-.progress-bar {
-  height: 100%;
-  width: 0;
-  border-radius: 999px;
-  background: linear-gradient(
+.progress-bar{
+  height:100%;
+  width:0;
+  border-radius:999px;
+  background:linear-gradient(
     270deg,
-    #3b82f6,
-    #8b5cf6,
-    #3b82f6
+    var(--progress-1),
+    var(--progress-2),
+    var(--progress-3)
   );
-  background-size: 400% 400%;
-  animation: gradientMove 4s ease infinite;
+  background-size:400% 400%;
+  animation:gradientMove 4s ease infinite;
 }
 
 /* Gradient bergerak */
