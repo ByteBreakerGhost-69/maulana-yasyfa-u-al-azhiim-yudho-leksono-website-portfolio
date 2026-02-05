@@ -102,11 +102,22 @@ body{
   color:var(--text-main);
   line-height:1.7;
   overflow-x:hidden;
-  opacity:0;
-  transition:background .6s ease, color .6s ease;
+  transform:translateY(10px);
+  opacity:1;
+  transition:background .6s ease, color .6s ease, transform .6s ease;
 }
-body.loaded{opacity:1;}
 
+body.loaded{
+  transform:translateY(0);
+  }
+
+h1,h2,h3,p,span,a,button{
+  opacity:1;
+  filter:none;
+  color:var(--text-main);
+} 
+
+p{color:var(--text-soft);}
 /* ================= NAV ================= */
 
 .logo img{
@@ -564,7 +575,7 @@ footer{
 
 #preloader .preload-text {
   font-size: 4rem;
-  color: #000;
+  color: var(--text-main);
   opacity: 0;
   margin: 0.3em 0;
   text-shadow: 0 0 5px #00f6ff, 0 0 10px #00f6ff, 0 0 20px #00f6ff;
@@ -744,12 +755,7 @@ footer{
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  background: #0b0f1a;
-  color: #e5e7eb;
-  font-family: 'Segoe UI', sans-serif;
-}
+
 
 .skills-section {
   max-width: 900px;
