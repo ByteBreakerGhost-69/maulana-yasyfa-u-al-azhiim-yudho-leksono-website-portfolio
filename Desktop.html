@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desktop Tools Rotation</title>
+
+</head>
+
+  <style>
+    *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  font-family:system-ui,sans-serif;
+}
+
+/* BACKGROUND */
+#vibe-bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  transition:1s ease;
+}
+
+/* LAYOUT */
+.desktop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:100vh;
+  padding:0 5%;
+}
+
+/* FOTO */
+.profile img{
+  width:320px;
+  border-radius:40px;
+}
+
+/* INFO PANEL (HIJAU) */
+.info-panel{
+  width:300px;
+}
+
+.info-icon{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:#32ff32;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:20px;
+  opacity:0;
+  transform:scale(.7);
+  transition:.6s ease;
+}
+
+.info-icon img{
+  width:80px;
+}
+
+.info-text{
+  background:#32ff32;
+  padding:18px;
+  border-radius:18px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:.6s ease;
+}
+
+.info-text h2{
+  margin-bottom:6px;
+}
+
+.info-panel.active .info-icon,
+.info-panel.active .info-text{
+  opacity:1;
+  transform:none;
+}
+
+/* TOOLS ZONE */
+.tools-zone{
+  position:relative;
+  width:360px;
+  height:520px;
+}
+
+/* REL MERAH */
+.arc-rail{
+  position:absolute;
+  width:360px;
+  height:360px;
+  border:20px solid #6b0000;
+  border-right:none;
+  border-radius:50%;
+  top:80px;
+}
+
+/* TOOL */
+.tool-moving{
+  position:absolute;
+  width:90px;
+  height:90px;
+  left:120px;
+  transition:transform 1.4s ease, opacity .6s ease;
+}
+
+.tool-moving img{
+  width:100%;
+    }
+  </style>
+  
+<body>
+
+<div id="vibe-bg"></div>
+
+<div class="desktop">
+
+  <!-- AREA KIRI (INFO TOOLS) -->
+  <div class="info-panel">
+    <div class="info-icon">
+      <img id="infoIcon">
+    </div>
+    <div class="info-text">
+      <h2 id="infoName"></h2>
+      <p id="infoDesc"></p>
+    </div>
+  </div>
+
+  <!-- AREA TOOLS BERPUTAR -->
+  <div class="tools-zone">
+    <div class="arc-rail"></div>
+
+    <div class="tool-moving">
+      <img id="toolIcon">
+    </div>
+  </div>
+
+  <!-- FOTO KAMU -->
+  <div class="profile">
+    <img src="images/maulana.png">
+  </div>
+
+</div>
+
+<script>
+  const tools = [
+  {
+    name:"Linux",
+    icon:"images/linux.png",
+    desc:"Open-source operating system",
+    bg:"#eaffea"
+  },
+  {
+    name:"Kali Linux",
+    icon:"images/kali.png",
+    desc:"Penetration testing platform",
+    bg:"#0d0d0d"
+  },
+  {
+    name:"Nmap",
+    icon:"images/nmap.png",
+    desc:"Network scanning & discovery",
+    bg:"#f3f3f3"
+  },
+  {
+    name:"Metasploit",
+    icon:"images/metasploit.png",
+    desc:"Exploitation framework",
+    bg:"#1a0000"
+  }
+];
+
+const toolIcon = document.getElementById("toolIcon");
+const infoPanel = document.querySelector(".info-panel");
+const infoIcon = document.getElementById("infoIcon");
+const infoName = document.getElementById("infoName");
+const infoDesc = document.getElementById("infoDesc");
+const bg = document.getElementById("vibe-bg");
+
+let index = 0;
+
+// POSISI Y
+const topY = 0;
+const centerY = 200;
+const bottomY = 420;
+
+function showTool(){
+  const tool = tools[index];
+
+  // RESET
+  infoPanel.classList.remove("active");
+  toolIcon.style.opacity = 0;
+
+  // SET ICON
+  toolIcon.src = tool.icon;
+  toolIcon.style.transform = `translateY(${topY}px)`;
+
+  setTimeout(()=>{
+    // TURUN KE TENGAH
+    toolIcon.style.opacity = 1;
+    toolIcon.style.transform = `translateY(${centerY}px)`;
+  },200);
+
+  // SAAT DI TENGAH (AKTIF)
+  setTimeout(()=>{
+    infoIcon.src = tool.icon;
+    infoName.textContent = tool.name;
+    infoDesc.textContent = tool.desc;
+    bg.style.background = tool.bg;
+    infoPanel.classList.add("active");
+  },1600);
+
+  // DIAM 5–6 DETIK
+  setTimeout(()=>{
+    infoPanel.classList.remove("active");
+    toolIcon.style.transform = `translateY(${bottomY}px)`;
+    toolIcon.style.opacity = 0;
+  },7000);
+
+  // TOOL BERIKUTNYA
+  setTimeout(()=>{
+    index = (index+1)%tools.length;
+    showTool();
+  },8500);
+}
+
+showTool();
+</script>
+</body>
+</html>
