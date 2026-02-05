@@ -659,17 +659,13 @@ footer{
     transition: transform 0.5s ease-in-out;
   }
 
-  .video-card {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
-  }
-
+  
+  /* Mengatur kartu agar mengikuti rasio persegi panjang */
   .video-box {
     width: 100%;
-    height: 300px;
-    background: #ffffff; /* Background putih sesuai request */
-    border-radius: 15px;
+    aspect-ratio: 16 / 9; /* Ini akan otomatis membuatnya persegi panjang */
+    background: #ffffff; 
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -677,7 +673,24 @@ footer{
     color: #333;
     border: 2px solid #00f2ff;
     box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+    overflow: hidden;
   }
+
+  .video-card {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px; /* Padding lebih ramping untuk persegi panjang */
+  }
+
+  /* Animasi Slogan di Bawah Video */
+  .tech-slogan {
+    font-size: 13px;
+    color: #00f2ff;
+    margin-top: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
 
   /* Indikator Kemampuan Bahasa */
   .lang-info h3 { color: #00f2ff; margin: 15px 0 5px; }
