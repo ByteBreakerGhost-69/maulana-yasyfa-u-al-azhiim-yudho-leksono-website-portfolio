@@ -1,1392 +1,859 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maulana Yasyfa'u Al Azhiim Yudho Leksono</title>
-<!-- Favicon untuk desktop -->
-<link rel="icon" type="image/png" sizes="32x32" href="images/Maulana.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/Maulana.png">
-
-<!-- Favicon untuk iOS / mobile -->
-<link rel="apple-touch-icon" sizes="180x180" href="images/Maulana.png">
-
-<!-- Optional: Android Chrome -->
-<link rel="manifest" href="site.webmanifest">
-  
-<style>
-:root{
-  --bg-main:#06080f;
-  --glass:rgba(255,255,255,.07);
-  --border-glass:rgba(255,255,255,.15);
-  --text-main:#e6e6eb;
-  --text-soft:#a8acc4;
-  --neon-cyan:#00f6ff;
-  --neon-purple:#8a6bff;
-    /* 🔥 TAMBAHAN UNTUK PROGRESS BAR */
-  --progress-1:var(--neon-cyan);
-  --progress-2:var(--neon-purple);
-  --progress-3:var(--neon-cyan);
-}
-
-body.light{
-  --bg-main:#f4f6fb;
-  --text-main:#111;
-  --text-soft:#555;
-  
-  --progress-1:#3b82f6;
-  --progress-2:#22c55e;
-  --progress-3:#3b82f6;
-}
-
-body.blue{
-  --bg-main:#eaf6ff;
-  --text-main:#062a44;
-  --text-soft:#2b5d85;
-
-  --progress-1:#0ea5e9;
-  --progress-2:#38bdf8;
-  --progress-3:#0ea5e9;
-}
-
-body.dark{
-  --bg-main:#06080f;
-  --text-main:#e6e6eb;
-  --text-soft:#a8acc4;
-
-  --progress-1:var(--neon-cyan);
-  --progress-2:var(--neon-purple);
-  --progress-3:var(--neon-cyan);
-}
-
-
-
-  /* ================= NEON GLOW TEXT ================= */
-.neon-blue{
-  color:#7fe9ff;
-  text-shadow:
-    0 0 5px rgba(0,240,255,.6),
-    0 0 10px rgba(0,240,255,.6),
-    0 0 20px rgba(0,240,255,.5),
-    0 0 40px rgba(0,240,255,.4);
-  animation:neonPulse 2.8s ease-in-out infinite;
-}
-
-/* denyut cahaya */
-@keyframes neonPulse{
-  0%,100%{
-    text-shadow:
-      0 0 6px rgba(0,240,255,.6),
-      0 0 14px rgba(0,240,255,.6),
-      0 0 28px rgba(0,240,255,.5);
-  }
-  50%{
-    text-shadow:
-      0 0 10px rgba(0,240,255,.9),
-      0 0 24px rgba(0,240,255,.9),
-      0 0 50px rgba(0,240,255,.8);
-  }
-}
-
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-
-body{
-  font-family:Inter,Segoe UI,sans-serif;
-  background:var(--bg-main);
-  color:var(--text-main);
-  line-height:1.7;
-  overflow-x:hidden;
-  transform:translateY(10px);
-  opacity:1;
-  transition:background .6s ease, color .6s ease, transform .6s ease;
-}
-
-body.loaded{
-  transform:translateY(0);
-  }
-
-h1,h2,h3,p,span,a,button{
-  opacity:1;
-  filter:none;
-  color:var(--text-main);
-} 
-
-p{color:var(--text-soft);}
-/* ================= NAV ================= */
-
-.logo img{
-  height:34px;          /* ukuran logo */
-  width:auto;
-  display:block;
-  filter:drop-shadow(0 0 6px rgba(0,255,255,.6));
-  transition:.3s ease;
-}
-
-.logo img:hover{
-  transform:scale(1.1);
-}
-
-
-.logo a{
-  color:var(--neon-cyan);
-  font-weight:700;
-  font-size:20px;
-  text-decoration:none;
-}
-
-.menu-toggle{
-  width:36px;
-  height:28px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  cursor:pointer;
-  z-index:1000;
-}
-
-.menu-toggle span{
-  height:3px;
-  width:100%;
-  background:var(--neon-cyan);
-  border-radius:4px;
-  transition:.4s ease;
-  box-shadow:0 0 8px rgba(0,255,255,.7);
-}
-
-/* ANIMASI JADI X */
-.menu-toggle.active span:nth-child(1){
-  transform:rotate(45deg) translate(6px,6px);
-}
-
-.menu-toggle.active span:nth-child(2){
-  opacity:0;
-}
-
-.menu-toggle.active span:nth-child(3){
-  transform:rotate(-45deg) translate(6px,-6px);
-}
-
- /* WRAPPER YANG FIXED */
-nav {
-  position:fixed;
-  top:16px;
-  left:50%;
-  transform:translateX(-50%);
-  width:92%;
-  padding:12px 18px;
-  background:var(--glass);
-  backdrop-filter:blur(16px);
-  border:1px solid var(--border-glass);
-  border-radius:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:999;
-}
-  
-nav ul{
-  position:absolute;
-  top:70px;
-  left:0;
-  width:100%;
-  list-style:none;
-  background:#06080f;
-  border-radius:20px;
-  border:1px solid rgba(0,255,255,.25);
-  box-shadow:0 20px 40px rgba(0,0,0,.6);
-
-  display:flex;
-  flex-direction:column;
-
-  transform:translateY(-12px);
-  opacity:0;
-  pointer-events:none;
-  transition:.4s ease;
-}
-
-nav ul.show{
-  transform:translateY(0);
-  opacity:1;
-  pointer-events:auto;
-}
-
-  
-nav ul.show{display:flex;}
-nav ul li a{
-  padding:14px;
-  text-align:center;
-  color:var(--text-soft);
-  text-decoration:none;
-}
-
-/* ================= SECTION (FIXED) ================= */
-section{
-  padding:100px 6%;
-  display:flex;
-  flex-direction:column;
-}
-
-/* ================= HOME ================= */
-
-  /* ================= TYPEWRITER ================= */
-.typewriter{
-  margin-top:12px;
-  font-size:18px;
-  min-height:28px;
-}
-
-.cursor{
-  margin-left:4px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink{
-  0%,50%{opacity:1;}
-  51%,100%{opacity:0;}
-}
-
-/* responsive */
-@media(max-width:600px){
-  .typewriter{
-    font-size:15px;
-  }
-}
-#home{
-  min-height:100vh;
-  justify-content:center;
-  text-align:center;
-}
-
-.profile{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  margin:0 auto 30px;
-  position:relative;
-}
-.profile::before{
-  content:"";
-  position:absolute;
-  inset:-10px;
-  border:2px solid var(--neon-cyan);
-  border-radius:50%;
-  animation:spin 14s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg);}}
-
-.profile img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50%;
-}
-
-h1{font-size:clamp(22px,6vw,34px);}
-h2{font-size:28px;}
-p{color:var(--text-soft);}
-
-.btn{
-  margin-top:30px;
-  padding:14px 34px;
-  border-radius:40px;
-  background:linear-gradient(45deg,var(--neon-cyan),var(--neon-purple));
-  color:#000;
-  font-weight:600;
-  text-decoration:none;
-  display:inline-block;
-}
-
-/* ================= ABOUT ================= */
-.about-head{
-  display:grid;
-  gap:30px;
-}
-
-.badges{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:20px;
-}
-.badge{
-  background:var(--glass);
-  border:1px solid var(--border-glass);
-  border-radius:12px;
-  padding:12px;
-  font-size:14px;
-}
-
-/* ================= SKILLS ================= */
-
-/* ================= TOOLS ORBIT ================= */
-.tools-orbit{
-  position:relative;
-  width:300px;
-  height:300px;
-  margin:50px auto 0;
-}
-
-.orbit{
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  animation:orbitRotate 18s linear infinite;
-}
-
-.orbit img{
-  position:absolute;
-  width:60px;
-  height:60px;
-  object-fit:contain;
-  filter:grayscale(60%) brightness(1.05);
-  opacity:.8;
-  transition:.4s ease;
-}
-
-.orbit img:hover{
-  filter:none;
-  opacity:1;
-  transform:scale(1.25);
-}
-
-/* POSISI MELINGKAR */
-/* POSISI MELINGKAR – 14 ITEM */
-.orbit img:nth-child(1){top:0;left:50%;transform:translateX(-50%);}
-.orbit img:nth-child(2){top:10%;right:20%;}
-.orbit img:nth-child(3){top:25%;right:0;}
-.orbit img:nth-child(4){top:50%;right:0;transform:translateY(-50%);}
-.orbit img:nth-child(5){bottom:25%;right:0;}
-.orbit img:nth-child(6){bottom:10%;right:20%;}
-.orbit img:nth-child(7){bottom:0;left:50%;transform:translateX(-50%);}
-.orbit img:nth-child(8){bottom:10%;left:20%;}
-.orbit img:nth-child(9){bottom:25%;left:0;}
-.orbit img:nth-child(10){top:50%;left:0;transform:translateY(-50%);}
-.orbit img:nth-child(11){top:25%;left:0;}
-.orbit img:nth-child(12){top:10%;left:20%;}
-.orbit img:nth-child(13){top:5%;left:70%;}
-.orbit img:nth-child(14){bottom:5%;left:30%;}
-
-@keyframes orbitRotate{
-  to{transform:rotate(360deg);}
-}
-
-  
-#skills{
-  text-align:center;
-}
-
-/* marquee container */
-.tools-marquee{
-  margin-top:40px;
-  overflow:hidden;
-  position:relative;
-}
-
-/* track jalan */
-.tools-track{
-  display:flex;
-  gap:50px;
-  width:max-content;
-  align-items:center;
-  animation:scroll 14s linear infinite;
-}
-
-/* animasi geser */
-@keyframes scroll{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
-
-/* LOGO TOOLS */
-.tools-track img{
-  width:70px;
-  height:70px;
-  object-fit:contain;
-
-  /* ⬇️ INI YANG DIUBAH */
-  filter: grayscale(60%) brightness(1.05);
-  opacity:.75;
-
-  transition: 
-    transform .4s ease,
-    filter .4s ease,
-    opacity .4s ease;
-}
-
-/* hover = full color */
-.tools-track img:hover{
-  filter:none;
-  opacity:1;
-  transform:scale(1.15);
-}
-
-/* ================= PROJECT ================= */
-#projects{text-align:center;}
-
-.project-grid{
-  display:grid;
-  gap:24px;
-  margin-top:40px;
-}
-
-.project-card{
-  background:rgba(255,255,255,.05);
-  border-radius:18px;
-  overflow:hidden;
-  transition:.4s;
-}
-.project-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 0 30px rgba(0,255,255,.2);
-}
-.project-card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-}
-.project-content{padding:18px;text-align:left;}
-.project-tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
-.project-tags span{
-  background:rgba(0,255,255,.15);
-  color:cyan;
-  padding:4px 10px;
-  border-radius:20px;
-  font-size:12px;
-}
-
-/* ================= CONTACT ================= */
-#contact{text-align:center;}
-.socials{
-  display:grid;
-  gap:16px;
-  margin-top:30px;
-}
-.socials a{
-  background:var(--glass);
-  border:1px solid var(--border-glass);
-  padding:16px;
-  border-radius:14px;
-  text-decoration:none;
-  color:var(--text-main);
-}
-
-footer{
-  margin-top:40px;
-  font-size:14px;
-  color:var(--text-soft);
-}
-
-/* ================= DESKTOP ================= */
-@media(min-width:768px){
-  nav ul{
-    position:static;
-    display:flex !important;
-    flex-direction:row;
-    background:none;
-    border:none;
-    box-shadow:none;
-    opacity:1;
-    transform:none;
-    gap:24px;
-  }
-
-  nav ul li a{
-    padding:0;
-  }
-
-  .menu-toggle{
-    display:none;
-  }
-}
-  /* ================= THEME MENU ================= */
-.theme-menu{
-  position:fixed;
-  top:90px;
-  left:50%;
-  transform:translateX(-50%) scale(.95);
-  background:#06080f;
-  border:1px solid rgba(0,255,255,.25);
-  border-radius:16px;
-  padding:12px;
-  display:none;
-  flex-direction:column;
-  gap:10px;
-  z-index:2000;
-  box-shadow:0 20px 40px rgba(0,0,0,.6);
-  transition:.3s ease;
-}
-
-.theme-menu.show{
-  display:flex;
-  transform:translateX(-50%) scale(1);
-}
-
-.theme-option{
-  padding:12px 18px;
-  border-radius:12px;
-  cursor:pointer;
-  background:rgba(255,255,255,.05);
-  color:var(--text-main);
-  transition:.3s;
-}
-
-.theme-option:hover{
-  background:rgba(0,255,255,.15);
-}
-
-  #tracker {
-  position:fixed;
-  bottom:10px;
-  right:10px;
-  background:rgba(0,0,0,0.6);
-  color:#fff;
-  font-size:12px;
-  padding:6px 10px;
-  border-radius:8px;
-  z-index:3000;
-  font-family:sans-serif;
-}
-
-#tracker table{
-  border-collapse:collapse;
-}
-
-#tracker td{
-  padding:2px 6px;
-}
-
-  /* ================= PRELOADER TEXT ANIMATION ================= */
-#preloader {
-  position: fixed;
-  inset: 0;
-  background: var(--bg-main);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-#preloader .preload-text {
-  font-size: 4rem;
-  color: var(--text-main);
-  opacity: 0;
-  margin: 0.3em 0;
-  text-shadow: 0 0 5px #00f6ff, 0 0 10px #00f6ff, 0 0 20px #00f6ff;
-  transition: opacity 1s, text-shadow 1s;
-}
-
-#preloader .preload-text.visible {
-  opacity: 1;
-  text-shadow: 0 0 20px #00f6ff, 0 0 40px #00f6ff, 0 0 60px #00f6ff;
-}
-
-  /* Gaya Tombol Quantum untuk Mxxxxxxxx */
-.science-access {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.btn-quantum {
-    display: inline-block;
-    padding: 12px 24px;
-    color: #00f2ff; /* Warna Neon Blue */
-    text-decoration: none;
-    border: 1px solid #00f2ff;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    letter-spacing: 2px;
-    position: relative;
-    transition: all 0.3s ease;
-    background: rgba(0, 242, 255, 0.05);
-}
-
-.btn-quantum:hover {
-    background: #00f2ff;
-    color: #000;
-    box-shadow: 0 0 20px #00f2ff, 0 0 40px #00f2ff;
-    transform: translateY(-2px);
-}
-
-/* Efek Glitch Sederhana */
-.glitch {
-    position: relative;
-}
-#neon-particles{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-1;
-  overflow:hidden;
-}
-
-.neon-dot{
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:#00f2ff;
-  border-radius:50%;
-  box-shadow:
-    0 0 6px #00f2ff,
-    0 0 12px rgba(0,242,255,.8);
-  opacity:.8;
-  animation:
-    float linear infinite,
-    flicker ease-in-out infinite;
-}
-
-@keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
-}
-
-@keyframes flicker{
-  0%,100%{opacity:.3}
-  50%{opacity:1}
-  }  
-
-.clean-box{
-  max-width:900px;
-  margin:60px auto;
-  padding:32px 28px;
-  background:#0e1117;
-  border:1px solid #1f2937;
-  border-radius:14px;
-}
-
-.clean-text{
-  color:#38bdf8; /* biru modern, bukan neon */
-  font-size:1rem;
-  line-height:1.8;
-  letter-spacing:.2px;
-}
-
-.clean-text strong{
-  color:#7dd3fc;
-  font-weight:600;
-}  
-
-  
-  .slider-container {
-    position: relative;
-    max-width: 600px;
-    margin: auto;
-    overflow: hidden; /* Menyembunyikan slide lain */
-    border-radius: 20px;
-  }
-
-  .video-slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  
-  /* Mengatur kartu agar mengikuti rasio persegi panjang */
-  .video-box {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Ini akan otomatis membuatnya persegi panjang */
-    background: #ffffff; 
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #333;
-    border: 2px solid #00f2ff;
-    box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
-    overflow: hidden;
-  }
-
-  .video-card {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 10px 20px; /* Padding lebih ramping untuk persegi panjang */
-  }
-
-  /* Animasi Slogan di Bawah Video */
-  .tech-slogan {
-    font-size: 13px;
-    color: #00f2ff;
-    margin-top: 10px;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-
-
-  /* Indikator Kemampuan Bahasa */
-  .lang-info h3 { color: #00f2ff; margin: 15px 0 5px; }
-  .skill-bar {
-    font-size: 12px;
-    font-weight: bold;
-    color: #fff;
-    background: rgba(0, 242, 255, 0.2);
-    padding: 4px 12px;
-    border-radius: 10px;
-    border: 1px solid #00f2ff;
-  }
-
-  /* Tombol Navigasi */
-  .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: #00f2ff;
-    border: 1px solid #00f2ff;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    z-index: 10;
-    transition: 0.3s;
-  }
-  .nav-btn:hover { background: #00f2ff; color: #000; }
-  .prev { left: 10px; }
-  .next { right: 10px; }
-
-  .story-text { color: #ccc; margin-top: 15px; font-style: italic; }
-
-* {
-  box-sizing: border-box;
-}
-
-
-
-.skills-section {
-  max-width: 900px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-.skills-section h1 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 2rem;
-}
-
-.category {
-  margin-bottom: 40px;
-}
-
-.category h2 {
-  margin-bottom: 20px;
-  color: #a5b4fc;
-}
-
-.skill {
-  margin-bottom: 15px;
-}
-
-.skill span {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-}
-
-.progress {
-  width: 100%;
-  height: 10px;
-  background: #1f2937;
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-/* BAR */
-.progress-bar{
-  height:100%;
-  width:0;
-  border-radius:999px;
-  background:linear-gradient(
-    270deg,
-    var(--progress-1),
-    var(--progress-2),
-    var(--progress-3)
-  );
-  background-size:400% 400%;
-  animation:gradientMove 4s ease infinite;
-}
-
-/* Gradient bergerak */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-  }
-
-
-  /* ================= DESKTOP FIX ================= */
-@media (min-width: 1024px) {
-
-  /* ===== NAVBAR ===== */
-  nav {
-    max-width: 1200px;
-    padding: 14px 28px;
-  }
-
-  nav ul {
-    position: static;
-    background: none;
-    border: none;
-    box-shadow: none;
-    flex-direction: row;
-    gap: 32px;
-  }
-
-  nav ul li a {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-soft);
-    transition: .3s;
-  }
-
-  nav ul li a:hover {
-    color: var(--neon-cyan);
-    text-shadow: 0 0 8px rgba(0,255,255,.6);
-  }
-
-  /* ===== HOME ===== */
-  #home {
-    padding-top: 140px;
-  }
-
-  h1 {
-    font-size: 42px;
-  }
-
-  .typewriter {
-    font-size: 20px;
-  }
-
-  /* ===== ABOUT ===== */
-  #about .about-head {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    max-width: 1100px;
-    margin: auto;
-  }
-
-  /* ===== TOOLS MARQUEE ===== */
-  .tools-marquee {
-    margin-top: 60px;
-  }
-
-  .tools-track img {
-    width: 80px;
-    height: 80px;
-  }
-
-  /* ===== SKILLS SECTION ===== */
-  .skills-section {
-    max-width: 1200px;
-  }
-
-  .skills-section .category {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-
-  /* ===== PROJECTS ===== */
-  .project-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px;
-    margin: 40px auto;
-  }
-
-  .project-card img {
-    height: 200px;
-  }
-
-  /* ===== CONTACT ===== */
-  .socials {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 900px;
-    margin: 40px auto;
-  }
-
-    }
-
-  
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maulana Yasyfa'u Al Azhiim Yudho Leksono</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/Maulana.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/Maulana.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/Maulana.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <style>
+         :root {
+            --bg-main: #06080f;
+            --glass: rgba(255, 255, 255, .07);
+            --border-glass: rgba(255, 255, 255, .15);
+            --text-main: #e6e6eb;
+            --text-soft: #a8acc4;
+            --neon-cyan: #00f6ff;
+            --neon-purple: #8a6bff;
+            --progress-1: var(--neon-cyan);
+            --progress-2: var(--neon-purple);
+            --progress-3: var(--neon-cyan);
+        }
+        
+        body.light {
+            --bg-main: #f4f6fb;
+            --text-main: #111;
+            --text-soft: #555;
+            --progress-1: #3b82f6;
+            --progress-2: #22c55e;
+            --progress-3: #3b82f6;
+        }
+        
+        body.blue {
+            --bg-main: #eaf6ff;
+            --text-main: #062a44;
+            --text-soft: #2b5d85;
+            --progress-1: #0ea5e9;
+            --progress-2: #38bdf8;
+            --progress-3: #0ea5e9;
+        }
+        
+        body.dark {
+            --bg-main: #06080f;
+            --text-main: #e6e6eb;
+            --text-soft: #a8acc4;
+            --progress-1: var(--neon-cyan);
+            --progress-2: var(--neon-purple);
+            --progress-3: var(--neon-cyan);
+        }
+        
+        .neon-blue {
+            color: #7fe9ff;
+            text-shadow: 0 0 5px rgba(0, 240, 255, .6), 0 0 10px rgba(0, 240, 255, .6);
+            animation: neonPulse 2.8s ease-in-out infinite;
+        }
+        
+        @keyframes neonPulse {
+            0%,
+            100% {
+                text-shadow: 0 0 6px rgba(0, 240, 255, .6), 0 0 14px rgba(0, 240, 255, .6);
+            }
+            50% {
+                text-shadow: 0 0 10px rgba(0, 240, 255, .9), 0 0 24px rgba(0, 240, 255, .9);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: Inter, Segoe UI, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background .6s ease, color .6s ease;
+        }
+        /* ================= NAV ================= */
+        
+        nav {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            padding: 12px 18px;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+        }
+        
+        .logo img {
+            height: 34px;
+            width: auto;
+            filter: drop-shadow(0 0 6px rgba(0, 255, 255, .6));
+            transition: .3s;
+            cursor: pointer;
+        }
+        
+        .menu-toggle {
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background: var(--neon-cyan);
+            border-radius: 4px;
+            transition: .4s;
+            box-shadow: 0 0 8px rgba(0, 255, 255, .7);
+        }
+        
+        nav ul {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            list-style: none;
+            background: #06080f;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, .25);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: .4s ease;
+        }
+        
+        nav ul.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(5px);
+        }
+        
+        nav ul li a {
+            padding: 14px;
+            display: block;
+            text-align: center;
+            color: var(--text-soft);
+            text-decoration: none;
+        }
+        /* ================= SECTIONS ================= */
+        
+        section {
+            padding: 80px 6%;
+        }
+        
+        #home {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .profile {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .profile::before {
+            content: "";
+            position: absolute;
+            inset: -10px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            animation: spin 14s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        h1 {
+            font-size: clamp(22px, 6vw, 34px);
+            margin-bottom: 10px;
+        }
+        
+        .typewriter {
+            font-size: 18px;
+            min-height: 28px;
+        }
+        
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%,
+            50% {
+                opacity: 1;
+            }
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        .btn {
+            margin-top: 30px;
+            padding: 14px 34px;
+            border-radius: 40px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: .3s;
+        }
+        /* ABOUT */
+        
+        .about-head {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .badges {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .badge {
+            background: var(--glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .video-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .video-card {
+            min-width: 100%;
+            padding: 10px;
+        }
+        
+        .video-box {
+            aspect-ratio: 16 / 9;
+            background: #111;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* SKILLS & TOOLS SECTION RAPI */
+        
+        .skills-section {
+            max-width: 900px;
+            margin: auto;
+        }
+        
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #1f2937;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(270deg, var(--progress-1), var(--progress-2));
+        }
+        
+        .tools-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px 0;
+            background: var(--glass);
+            border-top: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--border-glass);
+            position: relative;
+            overflow: hidden;
+            /* Efek Fade di pinggir */
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        
+        .tools-track {
+            display: flex;
+            gap: 60px;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+            align-items: center;
+        }
+        
+        .tools-track img {
+            height: 40px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: 0.4s ease;
+        }
+        
+        .tools-track img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+        /* PROJECTS */
+        
+        .project-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, .05);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: .4s;
+            border: 1px solid var(--border-glass);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-cyan);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-tags span {
+            background: rgba(0, 255, 255, .1);
+            color: var(--neon-cyan);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        
+        .clean-box {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #0e1117;
+            border-radius: 15px;
+            border: 1px solid #1f2937;
+            text-align: center;
+        }
+        /* ================= CONTACT (SOSMED KECIL & RAPI) ================= */
+        
+        #contact {
+            text-align: center;
+            padding: 100px 6% 80px;
+        }
+        
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            width: 70px;
+            transition: 0.4s;
+        }
+        
+        .contact-icon {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(0.6);
+            transition: 0.4s;
+        }
+        
+        .contact-item span {
+            margin-top: 8px;
+            font-size: 10px;
+            color: var(--text-soft);
+            opacity: 0;
+            transform: translateY(5px);
+            transition: 0.4s;
+            white-space: nowrap;
+        }
+        
+        .contact-item:hover .contact-icon {
+            filter: grayscale(0%) opacity(1);
+            transform: translateY(-5px);
+        }
+        
+        .contact-item:hover span {
+            opacity: 1;
+            transform: translateY(0);
+            color: var(--text-main);
+        }
+        
+        .linkedin:hover .contact-icon {
+            filter: drop-shadow(0 0 10px #0077b5);
+        }
+        
+        .github:hover .contact-icon {
+            filter: drop-shadow(0 0 10px #ffffff);
+        }
+        
+        .instagram:hover .contact-icon {
+            filter: drop-shadow(0 0 10px #e1306c);
+        }
+        
+        .x-twitter:hover .contact-icon {
+            filter: drop-shadow(0 0 10px #ffffff);
+        }
+        
+        .email:hover .contact-icon {
+            filter: drop-shadow(0 0 10px #00f6ff);
+        }
+        /* ================= VERSION DESKTOP ================= */
+        
+        @media (min-width: 1024px) {
+            nav {
+                width: 80%;
+                max-width: 1200px;
+                padding: 10px 40px;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            nav ul {
+                position: static;
+                opacity: 1;
+                pointer-events: auto;
+                flex-direction: row;
+                background: none;
+                border: none;
+                width: auto;
+                gap: 30px;
+            }
+            nav ul li a {
+                padding: 5px 0;
+                font-size: 15px;
+            }
+            nav ul li a:hover {
+                color: var(--neon-cyan);
+            }
+            #home h1 {
+                font-size: 50px;
+            }
+            .about-head {
+                grid-template-columns: 1fr 1.2fr;
+                align-items: center;
+                gap: 60px;
+                text-align: left;
+            }
+            .skills-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                max-width: 1100px;
+            }
+            .skills-section h1 {
+                grid-column: span 2;
+            }
+            .project-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1200px;
+            }
+            .contact-grid {
+                gap: 50px;
+            }
+            .theme-menu {
+                left: auto;
+                right: 10%;
+                transform: none;
+                top: 80px;
+            }
+            .tools-track img {
+                height: 50px;
+            }
+        }
+        /* Other UI */
+        
+        .theme-menu {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #06080f;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 16px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2000;
+        }
+        
+        .theme-menu.show {
+            display: flex;
+        }
+        
+        .theme-option {
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .theme-option:hover {
+            background: var(--neon-cyan);
+            color: #000;
+        }
+        
+        #tracker {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            font-size: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 3000;
+        }
+        
+        #neon-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .neon-dot {
+            position: absolute;
+            background: #00f2ff;
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(-10vh);
+            }
+        }
+    </style>
 </head>
 
-<body>
- <div id="neon-particles"></div>
-  <nav>
-    <div class="logo" onclick="toggleThemeMenu()">
-    <img src="images/Maulana.png" alt="maulana">
-  </div>
+<body class="dark">
+    <div id="neon-particles"></div>
+    <nav>
+        <div class="logo" onclick="toggleThemeMenu()"><img src="images/Maulana.png" alt="maulana"></div>
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <ul id="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<div class="menu-toggle" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-  <ul id="menu">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-  <div class="theme-menu" id="themeMenu">
-  <div class="theme-option" onclick="setTheme('light')">☀️ Light Mode</div>
-  <div class="theme-option" onclick="setTheme('blue')">💙 Blue Bright</div>
-  <div class="theme-option" onclick="setTheme('dark')">🌌 Dark Neon</div>
-  </div>
-
-<section id="home">
-  <div class="profile">
-    <img src="images/Maulana Yasyfa'u Al Azhiim Yudho Leksono.jpg" alt="Maulana Yasyfa'u Al Azhiim Yudho Leksono">
-  </div>
-  <h1 class="neon-blue">MAULANA YASYFA'U AL AZHIIM YUDHO LEKSONO</h1>
-<div class="typewriter neon-blue">
-  <span id="typing-text"></span>
-  <span class="cursor">|</span>
-</div>
-  <a href="#about" class="btn">Explore My Journey</a>
-</section>
-
-<section id="about">
-  <div class="about-head">
-    <div>
-      <h2 class="neon-blue">Identity & Philosophy</h2>
-      <a href="story.hml" class="btn">Storytelling</a>
+    <div class="theme-menu" id="themeMenu">
+        <div class="theme-option" onclick="setTheme('light')">☀️ Light</div>
+        <div class="theme-option" onclick="setTheme('blue')">💙 Blue</div>
+        <div class="theme-option" onclick="setTheme('dark')">🌌 Dark</div>
     </div>
-    <div>
-            <p> Lulusan sma dengan antusiasme tinggi di bidang Web3, Quantum Computing dan hal baru.<br><br> Filosofi saya berakar pada pepatah Mandarin:
-                    <strong>“活到老，学到老”</strong> </p>
-      <div class="badges">
-        <div class="badge">Indonesian</div>
-        <div class="badge">English</div>
-        <div class="badge">Mandarin</div>
-        <div class="badge">Russian</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-  <div class="identity-section">
-  <div class="slider-container">
-    <div class="video-slider" id="mainSlider">
-      
-      <div class="video-card" data-lang="id">
-        <div class="video-box">
-          <p>Video Bahasa Indonesia</p>
-          <span class="status-tag">To Be Continued...</span>
+    <section id="home">
+        <div class="profile"><img src="images/Maulana Yasyfa'u Al Azhiim Yudho Leksono.jpg" alt="Maulana"></div>
+        <h1 class="neon-blue">MAULANA YASYFA'U AL AZHIIM YUDHO LEKSONO</h1>
+        <div class="typewriter neon-blue"><span id="typing-text"></span><span class="cursor">|</span></div>
+        <center><a href="#about" class="btn">Explore My Journey</a></center>
+    </section>
+
+    <section id="about">
+        <div class="about-head">
+            <div>
+                <h2 class="neon-blue">Identity & Philosophy</h2>
+                <p style="margin: 20px 0;">Lulusan SMA dengan antusiasme tinggi di bidang Web3, Quantum Computing dan hal baru.</p>
+                <a href="story.hml" class="btn">Storytelling</a>
+            </div>
+            <div>
+                <p>Filosofi saya berakar pada pepatah Mandarin:<br><strong>“活到老，学到老”</strong> (Hiduplah sampai tua, belajarlah sampai tua).</p>
+                <div class="badges">
+                    <div class="badge">Indonesian</div>
+                    <div class="badge">English</div>
+                    <div class="badge">Mandarin</div>
+                    <div class="badge">Russian</div>
+                </div>
+            </div>
         </div>
-        <div class="lang-info">
-          <h3>Indonesian</h3>
-          <span class="skill-bar native">Native (100%)</span>
+        <div class="slider-container">
+            <div class="video-slider" id="mainSlider">
+                <div class="video-card">
+                    <div class="video-box">
+                        <p>Video Indonesia</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-box">
+                        <p>English Video</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-box">
+                        <p>中文视频</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-box">
+                        <p>Русское video</p>
+                    </div>
+                </div>
+            </div>
+            <button style="position:absolute; left:10px; top:50%; background:none; border:none; color:white; cursor:pointer; font-size:20px;" onclick="moveSlide(-1)">❮</button>
+            <button style="position:absolute; right:10px; top:50%; background:none; border:none; color:white; cursor:pointer; font-size:20px;" onclick="moveSlide(1)">❯</button>
         </div>
-      </div>
+    </section>
 
-      <div class="video-card" data-lang="en">
-        <div class="video-box">
-          <p>English Video</p>
-          <span class="status-tag">To Be Continued...</span>
+    <section id="skills" class="skills-section">
+        <h1 class="neon-blue" style="text-align:center; width:100%; margin-bottom:40px;">My Skills & Tools</h1>
+        <div class="category">
+            <h2>🧠 Quantum & Blockchain</h2>
+            <div class="skill"><span>Qiskit (65%)</span>
+                <div class="progress">
+                    <div class="progress-bar" data-level="65"></div>
+                </div>
+            </div>
+            <div class="skill"><span>Solidity (70%)</span>
+                <div class="progress">
+                    <div class="progress-bar" data-level="70"></div>
+                </div>
+            </div>
+            <div class="skill"><span>Rust (60%)</span>
+                <div class="progress">
+                    <div class="progress-bar" data-level="60"></div>
+                </div>
+            </div>
         </div>
-        <div class="lang-info">
-          <h3>English</h3>
-          <span class="skill-bar advanced">Advanced (85%)</span>
+        <div class="category">
+            <h2>🌐 Web & Security</h2>
+            <div class="skill"><span>HTML/CSS (90%)</span>
+                <div class="progress">
+                    <div class="progress-bar" data-level="90"></div>
+                </div>
+            </div>
+            <div class="skill"><span>JavaScript (80%)</span>
+                <div class="progress">
+                    <div class="progress-bar" data-level="80"></div>
+                </div>
+            </div>
+            <div class="skill"><span>Linux/Cyber (75%)</span>
+                <div class="progress">
+                    <div class="progress-bar" data-level="75"></div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="video-card" data-lang="cn">
-        <div class="video-box">
-          <p>中文视频</p>
-          <span class="status-tag">To Be Continued...</span>
+    <div class="tools-container">
+        <div class="tools-track">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg" alt="Rust" style="filter:invert(1)">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" alt="Solidity">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg" alt="Rust" style="filter:invert(1)">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" alt="Solidity">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash">
         </div>
-        <div class="lang-info">
-          <h3>Mandarin</h3>
-          <span class="skill-bar intermediate">Intermediate (60%)</span>
+    </div>
+
+    <section id="projects">
+        <h2 class="neon-blue" style="text-align:center;">The Laboratory</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="images/proyek ERC20 ku ( KKRN ERC20 ).png" alt="Project">
+                <div class="project-content">
+                    <h3>KKRN ERC-20</h3>
+                    <div class="project-tags"><span>Solidity</span><span>Ethereum</span></div>
+                    <a href="https://github.com/ByteBreakerGhost-69/KKRN-ERC-20" style="color:var(--neon-cyan); text-decoration:none; display:block; margin-top:15px;">View Repository →</a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="video-card" data-lang="ru">
-        <div class="video-box">
-          <p>Русское видео</p>
-          <span class="status-tag">To Be Continued...</span>
+    <section id="contact">
+        <h2 class="neon-blue">Let’s Collaborate</h2>
+        <div class="contact-grid">
+            <a href="https://www.linkedin.com/in/maulana-yasyfa-u-al-azhiim-yudho-leksono-95649a376" target="_blank" class="contact-item linkedin">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" class="contact-icon"><span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/ByteBreakerGhost-69" target="_blank" class="contact-item github">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="contact-icon" style="filter:invert(1)"><span>GitHub</span>
+            </a>
+            <a href="https://www.instagram.com/dekode.detik" target="_blank" class="contact-item instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="contact-icon"><span>Instagram</span>
+            </a>
+            <a href="https://x.com/u53864" target="_blank" class="contact-item x-twitter">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" class="contact-icon" style="filter:invert(1)"><span>X</span>
+            </a>
+            <a href="mailto:maulana.ghost.30@gmail.com" class="contact-item email">
+                <img src="https://www.svgrepo.com/show/303161/gmail-icon-logo.svg" class="contact-icon"><span>Email</span>
+            </a>
         </div>
-        <div class="lang-info">
-          <h3>Russian</h3>
-          <span class="skill-bar beginner">Beginner (30%)</span>
-        </div>
-      </div>
+        <footer style="margin-top: 60px; opacity: 0.4; font-size: 11px;">© 2026 Maulana Yasyfa'u Al Azhiim Yudho Leksono</footer>
+    </section>
 
-    </div>
+    <div id="tracker">Visits: <span id="visitCount">128</span> | Clicks: <span id="linkCount">42</span></div>
 
-    <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
-  </div>
+    <script>
+        window.onload = () => {
+            typeEffect();
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            document.body.className = savedTheme;
+        };
 
-  <p id="slide-desc" class="story-text">Gunakan panah untuk melihat perkenalan dalam berbagai bahasa.</p>
-  </div>
-  
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("show");
+        }
 
-<section id="skills">
-  <h2 class="neon-blue">Tools & Technologies</h2>
-  <div class="tools-marquee">
-    <div class="tools-track">
-      <img src="images/solidity.png" alt="solidity">
-      <img src="images/kali.png" alt="kali">
-      <img src="images/rust.png" alt="rust">
-      <img src="images/web3js.png" alt="web3js">
-      <img src="images/React.png" alt="React">
-      <img src="images/Node.js.png" alt="Node.js">
-      <img src="images/Qiskit-Logo.png" alt="Qiskit-Logo">
-      <img src="images/python.png" alt="python">
-      <img src="images/javascript.png" alt="javascript">
-      <img src="images/html.png" alt="html">
-      <img src="images/css-3.png" alt="css-3">
-      <img src="images/tools/Blackarce.png" alt="Blackarce">
-      <img src="images/tools/nmap.png" alt="nmap">
-      <img src="images/tools/linux.jpg" alt="linux">
-      <img src="images/tools/kali.png" alt="kali">
-    </div>
-  </div>
-</section>
+        function toggleThemeMenu() {
+            document.getElementById("themeMenu").classList.toggle("show");
+        }
 
-  <section class="skills-section">
-  <h1>My Skills & Tools</h1>
+        function setTheme(mode) {
+            document.body.className = mode;
+            localStorage.setItem("theme", mode);
+            toggleThemeMenu();
+        }
 
-  <!-- Quantum -->
-  <div class="category">
-    <h2>🧠 Quantum Computing</h2>
-    <div class="skill">
-      <span>Qiskit</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="65"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>Python (Quantum)</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="75"></div>
-      </div>
-    </div>
-  </div>
+        const texts = ["Web3 Developer", "Web3 Auditor", "Quantum Learner", "Smart Contract Dev"];
+        let index = 0,
+            charIndex = 0,
+            isDeleting = false;
 
-  <!-- Blockchain -->
-  <div class="category">
-    <h2>🔗 Blockchain & Web3</h2>
-    <div class="skill">
-      <span>Solidity</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="70"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>Rust</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="60"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>Web3.js</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="72"></div>
-      </div>
-    </div>
-  </div>
+        function typeEffect() {
+            const current = texts[index];
+            const typingElement = document.getElementById("typing-text");
+            if (!isDeleting) {
+                typingElement.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === current.length) setTimeout(() => isDeleting = true, 1200);
+            } else {
+                typingElement.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    index = (index + 1) % texts.length;
+                }
+            }
+            setTimeout(typeEffect, isDeleting ? 50 : 100);
+        }
 
-  <!-- Web Dev -->
-  <div class="category">
-    <h2>🌐 Web Development</h2>
-    <div class="skill">
-      <span>HTML5</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="90"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>CSS3</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="85"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>JavaScript</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="80"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>React</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="75"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>Node.js</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="70"></div>
-      </div>
-    </div>
-  </div>
+        let currentSlide = 0;
 
-  <!-- Cyber Security -->
-  <div class="category">
-    <h2>🛡️ Cybersecurity & OS</h2>
-    <div class="skill">
-      <span>Linux</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="80"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>BlackArch</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="65"></div>
-      </div>
-    </div>
-    <div class="skill">
-      <span>Nmap</span>
-      <div class="progress">
-        <div class="progress-bar" data-level="70"></div>
-      </div>
-    </div>
-  </div>
+        function moveSlide(direction) {
+            const slides = document.querySelectorAll('.video-card');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            document.getElementById('mainSlider').style.transform = `translateX(${-currentSlide * 100}%)`;
+        }
 
-  </section>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-level') + '%';
+                    entry.target.style.transition = 'width 1.5s ease-out';
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        document.querySelectorAll('.progress-bar').forEach(bar => observer.observe(bar));
 
-<section id="projects">
-  <h2 class="neon-blue">The Laboratory</h2>
-  <div class="project-grid">
-    <div class="project-card">
-      <img src="images/proyek ERC20 ku ( KKRN ERC20 ).png" alt="proyek ERC20 ku ( KKRN ERC20 )">
-      <div class="project-content">
-        <h3>KKRN ERC-20</h3>
-        <div class="project-tags">
-          <span>Solidity</span><span>Ethereum</span>
-        </div>
-        <a href="https://github.com/ByteBreakerGhost-69/KKRN-ERC-20" class="project-link">Repository →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!--  <div class="science-access">
-    <a href="Science.html" class="btn-quantum">
-        <span class="glitch">TEORI ALAM SEMESTA</span>
-    </a>
-</div>  -->
-
-
-<div class="clean-box">
-  <p class="clean-text">
-    Di era di mana data adalah getaran dan privasi adalah hak fundamental,
-    <strong>Maulana yasyfa'u al Azhiim</strong> mengintegrasikan desentralisasi Web3 dengan
-    kepastian hukum Mekanika Kuantum. Kami tidak lagi mengandalkan dinding api
-    (firewalls) yang rapuh, melainkan menggunakan
-    <strong>Prinsip Ketidakpastian Heisenberg</strong> untuk mengunci data sensitif.
-    Dalam jaringan ini, informasi tidak hanya terenkripsi, ia terjalin
-    (<em>entangled</em>); di mana setiap upaya intrusi secara otomatis akan
-    meruntuhkan fungsi gelombang data itu sendiri.
-    <br><br>
-    Ini adalah benteng terakhir keamanan informasi: sebuah protokol di mana data
-    sensitif menjadi <strong>abadi</strong>, <strong>tak terlihat</strong>, dan
-    <strong>tak terjamah</strong> oleh logika komputasi klasik.
-  </p>
-</div>
-
-<section id="contact">
-  <h2 class="neon-blue">Let’s Collaborate</h2>
-  <div class="socials">
-    <a href="https://www.linkedin.com/in/maulana-yasyfa-u-al-azhiim-yudho-leksono-95649a376?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ">LinkedIn</a>
-    <a href=" https://www.instagram.com/dekode.detik?igsh=MTMya3hkMDNsZmI3bA==">Instagram</a>
-    <a href="https://github.com/ByteBreakerGhost-69 ">GitHub</a>
-    <a href=" https://x.com/u53864">X</a>
-    <a href="mailto:maulana.ghost.30@example.com">maulana.ghost.30@example.com</a>
-  </div>
-  <footer>© 2026 Maulana Yasyfa'u Al Azhiim Yudho Leksono</footer>
-</section>
-  
-  <!-- Mini Tracker -->
-<div id="tracker">
-  <table>
-    <tr><td>Page Visits:</td><td id="visitCount">0</td></tr>
-    <tr><td>Link Clicks:</td><td id="linkCount">0</td></tr>
-  </table>
-</div>
-
-
-<script>
-/* ================= PAGE LOAD ================= */
-window.onload = () => {
-  document.body.classList.add("loaded");
-  typeEffect();
-
-  const savedTheme = localStorage.getItem("theme") || "dark";
-  document.body.classList.add(savedTheme);
-};
-
-/* ================= MENU MOBILE ================= */
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("show");
-  document.querySelector(".menu-toggle").classList.toggle("active");
-}
-
-/* ================= THEME MENU ================= */
-function toggleThemeMenu(){
-  document.getElementById("themeMenu").classList.toggle("show");
-}
-
-function setTheme(mode){
-  document.body.classList.remove("light","blue","dark");
-  document.body.classList.add(mode);
-  localStorage.setItem("theme", mode);
-  document.getElementById("themeMenu").classList.remove("show");
-}
-
-/* ================= TYPEWRITER ================= */
-const texts = [
-  "Web3 Developer",
-  "Web3 Auditor",
-  "Web Developer",
-  "Smart Contract Developer",
-  "Smart Contract Auditor",
-  "Cyber Security (Learning Stage)"
-];
-
-let index = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-const speed = 80;
-const deleteSpeed = 45;
-const delay = 1200;
-
-const typingElement = document.getElementById("typing-text");
-
-function typeEffect(){
-  const current = texts[index];
-
-  if(!isDeleting){
-    typingElement.textContent = current.substring(0, charIndex + 1);
-    charIndex++;
-    if(charIndex === current.length){
-      setTimeout(()=>isDeleting=true, delay);
-    }
-  }else{
-    typingElement.textContent = current.substring(0, charIndex - 1);
-    charIndex--;
-    if(charIndex === 0){
-      isDeleting = false;
-      index = (index + 1) % texts.length;
-    }
-  }
-
-  setTimeout(typeEffect, isDeleting ? deleteSpeed : speed);
-}
-</script>
-
-  <script>
-// ================= PAGE VISITS =================
-let visits = parseInt(localStorage.getItem('visits') || '0');
-visits++;
-localStorage.setItem('visits', visits);
-document.getElementById('visitCount').textContent = visits;
-
-// ================= LINK CLICKS =================
-let links = document.querySelectorAll('a');
-let clicks = parseInt(localStorage.getItem('linkClicks') || '0');
-document.getElementById('linkCount').textContent = clicks;
-
-links.forEach(link => {
-  link.addEventListener('click', () => {
-    clicks++;
-    localStorage.setItem('linkClicks', clicks);
-    document.getElementById('linkCount').textContent = clicks;
-  });
-});
-  </script>
-
-
-  <script>
-const container=document.getElementById("neon-particles");
-
-for(let i=0;i<80;i++){
-  const dot=document.createElement("div");
-  dot.className="neon-dot";
-
-  const size=Math.random()*3+2;
-  dot.style.width=size+"px";
-  dot.style.height=size+"px";
-
-  dot.style.left=Math.random()*100+"vw";
-  dot.style.top=Math.random()*100+"vh";
-
-  const duration=Math.random()*20+10;
-  dot.style.animationDuration=
-    duration+"s,"+(Math.random()*4+2)+"s";
-
-  dot.style.animationDelay=
-    Math.random()*-20+"s";
-
-  container.appendChild(dot);
-}
-  </script>
-
-
-  <script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.video-card');
-  const totalSlides = slides.length;
-
-  function moveSlide(direction) {
-    currentSlide += direction;
-
-    if (currentSlide >= totalSlides) {
-      currentSlide = 0; // Kembali ke awal
-    } else if (currentSlide < 0) {
-      currentSlide = totalSlides - 1; // Ke slide terakhir
-    }
-
-    const offset = -currentSlide * 100;
-    document.getElementById('mainSlider').style.transform = `translateX(${offset}%)`;
-    
-    updateDescription(currentSlide);
-  }
-
-  function updateDescription(index) {
-    const desc = document.getElementById('slide-desc');
-    const lang = slides[index].getAttribute('data-lang');
-    
-    const messages = {
-      id: " Web3, Quantum Computing, dan AI adalah rumpun teknologi masa depan ",
-      en: "Web3, Quantum Computing, and AI are the technology clusters of the future.",
-      cn: "Web3、量子计算和人工智能是未来的技术群",
-      ru: "Web3, квантовые вычисления и ИИ — это технологические кластеры будущего."
-    };
-    
-    desc.innerHTML = messages[lang] || "";
-  }
-  </script>
-  
-
-<script>
-  const bars = document.querySelectorAll('.progress-bar');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const level = entry.target.getAttribute('data-level');
-      entry.target.style.width = level + '%';
-      entry.target.style.transition = 'width 1.5s ease-out';
-    }
-  });
-}, {
-  threshold: 0.5
-});
-
-bars.forEach(bar => observer.observe(bar));
-</script>
-
-  
+        const container = document.getElementById("neon-particles");
+        for (let i = 0; i < 40; i++) {
+            const dot = document.createElement("div");
+            dot.className = "neon-dot";
+            dot.style.width = dot.style.height = Math.random() * 3 + 1 + "px";
+            dot.style.left = Math.random() * 100 + "vw";
+            dot.style.top = Math.random() * 100 + "vh";
+            dot.style.animationDuration = Math.random() * 15 + 10 + "s";
+            container.appendChild(dot);
+        }
+    </script>
 </body>
+
 </html>
