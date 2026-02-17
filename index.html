@@ -23,6 +23,7 @@
             --progress-2: var(--neon-purple);
             --progress-3: var(--neon-cyan);
         }
+        /* TEMA LIGHT */
         
         body.light {
             --bg-main: #f4f6fb;
@@ -31,15 +32,24 @@
             --progress-1: #3b82f6;
             --progress-2: #22c55e;
             --progress-3: #3b82f6;
+            --glass: rgba(0, 0, 0, .05);
+            --border-glass: rgba(0, 0, 0, .1);
         }
+        /* TEMA BLUE (BIRU TUA) - UPDATED */
         
         body.blue {
-            --bg-main: #eaf6ff;
-            --text-main: #062a44;
-            --text-soft: #2b5d85;
-            --progress-1: #0ea5e9;
-            --progress-2: #38bdf8;
-            --progress-3: #0ea5e9;
+            --bg-main: #0a192f;
+            /* Deep Navy */
+            --text-main: #e6f1ff;
+            --text-soft: #8892b0;
+            --neon-cyan: #64ffda;
+            /* Teal-ish Cyan untuk kontras biru tua */
+            --neon-purple: #4d5ae5;
+            --progress-1: #00d2ff;
+            --progress-2: #0077ff;
+            --progress-3: #00d2ff;
+            --glass: rgba(16, 33, 65, 0.7);
+            --border-glass: rgba(100, 255, 218, 0.2);
         }
         
         body.dark {
@@ -52,18 +62,18 @@
         }
         
         .neon-blue {
-            color: #7fe9ff;
-            text-shadow: 0 0 5px rgba(0, 240, 255, .6), 0 0 10px rgba(0, 240, 255, .6);
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px rgba(0, 240, 255, .4);
             animation: neonPulse 2.8s ease-in-out infinite;
         }
         
         @keyframes neonPulse {
             0%,
             100% {
-                text-shadow: 0 0 6px rgba(0, 240, 255, .6), 0 0 14px rgba(0, 240, 255, .6);
+                text-shadow: 0 0 6px rgba(0, 240, 255, .4);
             }
             50% {
-                text-shadow: 0 0 10px rgba(0, 240, 255, .9), 0 0 24px rgba(0, 240, 255, .9);
+                text-shadow: 0 0 20px rgba(0, 240, 255, .8);
             }
         }
         
@@ -78,7 +88,7 @@
         }
         
         body {
-            font-family: Inter, Segoe UI, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             background: var(--bg-main);
             color: var(--text-main);
             line-height: 1.7;
@@ -106,8 +116,7 @@
         
         .logo img {
             height: 34px;
-            width: auto;
-            filter: drop-shadow(0 0 6px rgba(0, 255, 255, .6));
+            filter: drop-shadow(0 0 6px var(--neon-cyan));
             transition: .3s;
             cursor: pointer;
         }
@@ -126,8 +135,7 @@
             width: 100%;
             background: var(--neon-cyan);
             border-radius: 4px;
-            transition: .4s;
-            box-shadow: 0 0 8px rgba(0, 255, 255, .7);
+            box-shadow: 0 0 8px var(--neon-cyan);
         }
         
         nav ul {
@@ -136,9 +144,9 @@
             left: 0;
             width: 100%;
             list-style: none;
-            background: #06080f;
+            background: var(--bg-main);
             border-radius: 20px;
-            border: 1px solid rgba(0, 255, 255, .25);
+            border: 1px solid var(--border-glass);
             display: flex;
             flex-direction: column;
             opacity: 0;
@@ -239,6 +247,11 @@
             display: inline-block;
             transition: .3s;
         }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
         /* ABOUT */
         
         .about-head {
@@ -281,14 +294,14 @@
         
         .video-box {
             aspect-ratio: 16 / 9;
-            background: #111;
+            background: #000;
             border: 2px solid var(--neon-cyan);
             border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        /* SKILLS & TOOLS SECTION RAPI */
+        /* SKILLS */
         
         .skills-section {
             max-width: 900px;
@@ -319,7 +332,6 @@
             border-bottom: 1px solid var(--border-glass);
             position: relative;
             overflow: hidden;
-            /* Efek Fade di pinggir */
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
@@ -334,10 +346,9 @@
         
         .tools-track img {
             height: 40px;
-            width: auto;
             filter: grayscale(100%);
             opacity: 0.5;
-            transition: 0.4s ease;
+            transition: 0.4s;
         }
         
         .tools-track img:hover {
@@ -363,7 +374,7 @@
         }
         
         .project-card {
-            background: rgba(255, 255, 255, .05);
+            background: var(--glass);
             border-radius: 18px;
             overflow: hidden;
             transition: .4s;
@@ -393,17 +404,7 @@
             font-size: 12px;
             margin-right: 5px;
         }
-        
-        .clean-box {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            background: #0e1117;
-            border-radius: 15px;
-            border: 1px solid #1f2937;
-            text-align: center;
-        }
-        /* ================= CONTACT (SOSMED KECIL & RAPI) ================= */
+        /* CONTACT */
         
         #contact {
             text-align: center;
@@ -443,7 +444,6 @@
             opacity: 0;
             transform: translateY(5px);
             transition: 0.4s;
-            white-space: nowrap;
         }
         
         .contact-item:hover .contact-icon {
@@ -456,97 +456,14 @@
             transform: translateY(0);
             color: var(--text-main);
         }
-        
-        .linkedin:hover .contact-icon {
-            filter: drop-shadow(0 0 10px #0077b5);
-        }
-        
-        .github:hover .contact-icon {
-            filter: drop-shadow(0 0 10px #ffffff);
-        }
-        
-        .instagram:hover .contact-icon {
-            filter: drop-shadow(0 0 10px #e1306c);
-        }
-        
-        .x-twitter:hover .contact-icon {
-            filter: drop-shadow(0 0 10px #ffffff);
-        }
-        
-        .email:hover .contact-icon {
-            filter: drop-shadow(0 0 10px #00f6ff);
-        }
-        /* ================= VERSION DESKTOP ================= */
-        
-        @media (min-width: 1024px) {
-            nav {
-                width: 80%;
-                max-width: 1200px;
-                padding: 10px 40px;
-            }
-            .menu-toggle {
-                display: none;
-            }
-            nav ul {
-                position: static;
-                opacity: 1;
-                pointer-events: auto;
-                flex-direction: row;
-                background: none;
-                border: none;
-                width: auto;
-                gap: 30px;
-            }
-            nav ul li a {
-                padding: 5px 0;
-                font-size: 15px;
-            }
-            nav ul li a:hover {
-                color: var(--neon-cyan);
-            }
-            #home h1 {
-                font-size: 50px;
-            }
-            .about-head {
-                grid-template-columns: 1fr 1.2fr;
-                align-items: center;
-                gap: 60px;
-                text-align: left;
-            }
-            .skills-section {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-                max-width: 1100px;
-            }
-            .skills-section h1 {
-                grid-column: span 2;
-            }
-            .project-grid {
-                grid-template-columns: repeat(3, 1fr);
-                max-width: 1200px;
-            }
-            .contact-grid {
-                gap: 50px;
-            }
-            .theme-menu {
-                left: auto;
-                right: 10%;
-                transform: none;
-                top: 80px;
-            }
-            .tools-track img {
-                height: 50px;
-            }
-        }
-        /* Other UI */
+        /* THEME MENU */
         
         .theme-menu {
             position: fixed;
             top: 90px;
             left: 50%;
             transform: translateX(-50%);
-            background: #06080f;
+            background: var(--bg-main);
             border: 1px solid var(--neon-cyan);
             border-radius: 16px;
             padding: 10px;
@@ -592,17 +509,66 @@
         
         .neon-dot {
             position: absolute;
-            background: #00f2ff;
+            background: var(--neon-cyan);
             border-radius: 50%;
             animation: float linear infinite;
         }
         
         @keyframes float {
             from {
-                transform: translateY(100vh);
+                transform: translateY(105vh);
             }
             to {
                 transform: translateY(-10vh);
+            }
+        }
+        /* RESPONSIVE DESKTOP */
+        
+        @media (min-width: 1024px) {
+            nav {
+                width: 80%;
+                max-width: 1200px;
+            }
+            .menu-toggle {
+                display: none;
+            }
+            nav ul {
+                position: static;
+                opacity: 1;
+                pointer-events: auto;
+                flex-direction: row;
+                background: none;
+                border: none;
+                width: auto;
+                gap: 30px;
+            }
+            nav ul li a:hover {
+                color: var(--neon-cyan);
+            }
+            #home h1 {
+                font-size: 50px;
+            }
+            .about-head {
+                grid-template-columns: 1fr 1.2fr;
+                gap: 60px;
+                text-align: left;
+            }
+            .skills-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            .skills-section h1 {
+                grid-column: span 2;
+            }
+            .project-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .theme-menu {
+                left: auto;
+                right: 10%;
+                transform: none;
+                top: 80px;
             }
         }
     </style>
@@ -610,6 +576,7 @@
 
 <body class="dark">
     <div id="neon-particles"></div>
+
     <nav>
         <div class="logo" onclick="toggleThemeMenu()"><img src="images/Maulana.png" alt="maulana"></div>
         <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -624,8 +591,8 @@
 
     <div class="theme-menu" id="themeMenu">
         <div class="theme-option" onclick="setTheme('light')">☀️ Light</div>
-        <div class="theme-option" onclick="setTheme('blue')">💙 Blue</div>
-        <div class="theme-option" onclick="setTheme('dark')">🌌 Dark</div>
+        <div class="theme-option" onclick="setTheme('blue')">💙 Blue Navy</div>
+        <div class="theme-option" onclick="setTheme('dark')">🌌 Dark Space</div>
     </div>
 
     <section id="home">
@@ -639,8 +606,8 @@
         <div class="about-head">
             <div>
                 <h2 class="neon-blue">Identity & Philosophy</h2>
-                <p style="margin: 20px 0;">Lulusan SMA dengan antusiasme tinggi di bidang Web3, Quantum Computing dan hal baru.</p>
-                <a href="story.html" class="btn">Storytelling</a>
+                <p style="margin: 20px 0;">Lulusan SMA dengan antusiasme tinggi di bidang Web3, Quantum Computing, dan eksplorasi teknologi masa depan.</p>
+                <a href="story.html" class="btn">My Story</a>
             </div>
             <div>
                 <p>Filosofi saya berakar pada pepatah Mandarin:<br><strong>“活到老，学到老”</strong> (Hiduplah sampai tua, belajarlah sampai tua).</p>
@@ -652,6 +619,7 @@
                 </div>
             </div>
         </div>
+
         <div class="slider-container">
             <div class="video-slider" id="mainSlider">
                 <div class="video-card">
@@ -729,7 +697,6 @@
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg" alt="Rust" style="filter:invert(1)">
@@ -737,7 +704,6 @@
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash">
         </div>
     </div>
 
@@ -767,9 +733,6 @@
             <a href="https://www.instagram.com/dekode.detik" target="_blank" class="contact-item instagram">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="contact-icon"><span>Instagram</span>
             </a>
-            <a href="https://x.com/u53864" target="_blank" class="contact-item x-twitter">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg" class="contact-icon" style="filter:invert(1)"><span>X</span>
-            </a>
             <a href="mailto:maulana.ghost.30@gmail.com" class="contact-item email">
                 <img src="https://www.svgrepo.com/show/303161/gmail-icon-logo.svg" class="contact-icon"><span>Email</span>
             </a>
@@ -784,6 +747,7 @@
             typeEffect();
             const savedTheme = localStorage.getItem("theme") || "dark";
             document.body.className = savedTheme;
+            createParticles();
         };
 
         function toggleMenu() {
@@ -843,15 +807,18 @@
         });
         document.querySelectorAll('.progress-bar').forEach(bar => observer.observe(bar));
 
-        const container = document.getElementById("neon-particles");
-        for (let i = 0; i < 40; i++) {
-            const dot = document.createElement("div");
-            dot.className = "neon-dot";
-            dot.style.width = dot.style.height = Math.random() * 3 + 1 + "px";
-            dot.style.left = Math.random() * 100 + "vw";
-            dot.style.top = Math.random() * 100 + "vh";
-            dot.style.animationDuration = Math.random() * 15 + 10 + "s";
-            container.appendChild(dot);
+        function createParticles() {
+            const container = document.getElementById("neon-particles");
+            for (let i = 0; i < 40; i++) {
+                const dot = document.createElement("div");
+                dot.className = "neon-dot";
+                dot.style.width = dot.style.height = Math.random() * 3 + 1 + "px";
+                dot.style.left = Math.random() * 100 + "vw";
+                dot.style.top = Math.random() * 100 + "vh";
+                dot.style.animationDuration = Math.random() * 15 + 10 + "s";
+                dot.style.opacity = Math.random();
+                container.appendChild(dot);
+            }
         }
     </script>
 </body>
